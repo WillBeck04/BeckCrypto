@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@tanstack/react-table': ^8.8.5
   '@types/node': 18.15.11
   '@types/react': 18.0.37
   '@types/react-dom': 18.0.11
@@ -8,13 +9,16 @@ specifiers:
   eslint: 8.38.0
   eslint-config-next: 13.3.0
   next: 13.3.0
+  next-themes: ^0.2.1
   postcss: 8.4.22
   react: 18.2.0
   react-dom: 18.2.0
   tailwindcss: 3.3.1
   typescript: 5.0.4
+  zod: ^3.21.4
 
 dependencies:
+  '@tanstack/react-table': 8.8.5_biqbaboplfbrettd7655fr4n2y
   '@types/node': 18.15.11
   '@types/react': 18.0.37
   '@types/react-dom': 18.0.11
@@ -22,11 +26,13 @@ dependencies:
   eslint: 8.38.0
   eslint-config-next: 13.3.0_voubu7prgxjfsfbgx5d4sqnwiy
   next: 13.3.0_biqbaboplfbrettd7655fr4n2y
+  next-themes: 0.2.1_yucv4tfv7v7nrkw2uguegj6e7e
   postcss: 8.4.22
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   tailwindcss: 3.3.1_postcss@8.4.22
   typescript: 5.0.4
+  zod: 3.21.4
 
 packages:
 
@@ -260,6 +266,23 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tanstack/react-table/8.8.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-g/t21E/ICHvaCOJOhsDNr5QaB/6aDQEHFbx/YliwwU/CJThMqG+dS28vnToIBV/5MBgpeXoGRi2waDJVJlZrtg==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      '@tanstack/table-core': 8.8.5
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@tanstack/table-core/8.8.5:
+    resolution: {integrity: sha512-Xnwa1qxpgvSW7ozLiexmKp2PIYcLBiY/IizbdGriYCL6OOHuZ9baRhrrH51zjyz+61ly6K59rmt6AI/3RR+97Q==}
+    engines: {node: '>=12'}
     dev: false
 
   /@types/json5/0.0.29:
@@ -1730,6 +1753,18 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: false
 
+  /next-themes/0.2.1_yucv4tfv7v7nrkw2uguegj6e7e:
+    resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
+    peerDependencies:
+      next: '*'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      next: 13.3.0_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /next/13.3.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-OVTw8MpIPa12+DCUkPqRGPS3thlJPcwae2ZL4xti3iBff27goH024xy4q2lhlsdoYiKOi8Kz6uJoLW/GXwgfOA==}
     engines: {node: '>=14.6.0'}
@@ -2542,4 +2577,8 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: false
+
+  /zod/3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
