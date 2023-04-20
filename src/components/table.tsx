@@ -12,8 +12,9 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import Image from "next/image";
+import { Sparklines, SparklinesLine } from "react-sparklines";
 
-import { useState, useReducer } from "react";
+import { useState } from "react";
 
 const columnHelper = createColumnHelper<CryptoData[number]>();
 
@@ -45,6 +46,39 @@ const columns = [
     cell: (info) => `$${formatter.format(info.getValue())}`,
     header: "Price",
   }),
+
+  columnHelper.accessor("price_change_percentage_24h", {
+    cell: (info) => (
+      <p className={info.getValue() > 0 ? "text-green-500" : "text-red-500"}>
+        {info.getValue()}
+      </p>
+    ),
+    header: "24h %",
+  }),
+  columnHelper.accessor("market_cap", {
+    cell: (info) => `$${formatter.format(info.getValue())}`,
+    header: "Market Cap",
+  }),
+  columnHelper.accessor("total_volume", {
+    cell: (info) => `$${formatter.format(info.getValue())}`,
+    header: "Total Volume",
+  }),
+  columnHelper.accessor("circulating_supply", {
+    cell: (info) => `$${formatter.format(info.getValue())}`,
+    header: "Circulating supply",
+  }),
+  columnHelper.accessor("sparkline_in_7d", {
+    cell: (info) => (
+      <Sparklines data={info.getValue().price}>
+        <SparklinesLine
+          color={
+            info.row.original.price_change_percentage_24h > 0 ? "teal" : "red"
+          }
+        />
+      </Sparklines>
+    ),
+    header: "Last 7 Days",
+  }),
 ];
 
 export function Table({ cryptoData }: { cryptoData: CryptoData }) {
@@ -65,7 +99,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   });
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-2">
       <table className="w-full text-sm text-left">
         <thead className="uppercase">
           {table.getHeaderGroups().map((headerGroup) => (

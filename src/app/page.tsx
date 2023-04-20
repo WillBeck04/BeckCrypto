@@ -10,6 +10,13 @@ const cryptoDataSchema = z.array(
     name: z.string(),
     image: z.string(),
     current_price: z.number(),
+    price_change_percentage_24h: z.number(),
+    market_cap: z.number(),
+    total_volume: z.number(),
+    circulating_supply: z.number(),
+    sparkline_in_7d: z.object({
+      price: z.array(z.number()),
+    }),
   })
 );
 
@@ -18,9 +25,11 @@ export type CryptoData = z.infer<typeof cryptoDataSchema>;
 async function getCryptoData() {
   const res = await fetch(
     "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&locale=en",
-    {next: {
-      revalidate: 500
-    }}
+    {
+      next: {
+        revalidate: 500,
+      },
+    }
   );
 
   const data = await res.json();
