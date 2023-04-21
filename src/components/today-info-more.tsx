@@ -12,12 +12,15 @@ export default function TodaInfoMore({
   const [readMore, setReadMore] = useState(false);
   return (
     <>
-      <button onClick={() => setReadMore(!readMore)}>
+      <button
+        onClick={() => setReadMore(!readMore)}
+        className="text-slate-600 text-sm font-medium underline decoration-slate-600 dark:text-slate-400 dark:decoration-slate-400"
+      >
         {readMore ? "Read less" : "Read more"}
       </button>
 
       {readMore ? (
-        <p>
+        <p className="text-slate-800 dark:text-slate-300 text-sm font-medium">
           The total crypto market volume is currently{" "}
           <span className="font-semibold">
             {formatter.format(globalData.total_volume.usd)}

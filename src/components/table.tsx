@@ -99,7 +99,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   });
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-2">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-2 mt-6 lg:mt-12">
       <table className="w-full text-sm text-left">
         <thead className="uppercase">
           {table.getHeaderGroups().map((headerGroup) => (

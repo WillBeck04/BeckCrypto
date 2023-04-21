@@ -4,9 +4,11 @@ import TodaInfoMore from "./today-info-more";
 export async function TodayInfo() {
   const globalData = await getGlobalCryptoData();
   return (
-    <div>
-      <h2>Today&apos;s Cryptocurrency Prices by Market Cap</h2>
-      <p>
+    <div className="w-full px-4 lg:px-0">
+      <h2 className="lg:text-2xl text-lg font-semibold">
+        Today&apos;s Cryptocurrency Prices by Market Cap
+      </h2>
+      <p className="mt-2 text-slate-800 dark:text-slate-300 text-sm font-medium">
         The global crypto market cap is $
         <span className="font-semibold">
           {globalData.total_market_cap.usd.toFixed(0)}
