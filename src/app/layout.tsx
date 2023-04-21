@@ -25,7 +25,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={inter.variable}>
       <body>
         <Providers>
-          {/* @ts-expect-error Async Server Component */}
           <Navbar />
           <Container>{children}</Container>
         </Providers>
