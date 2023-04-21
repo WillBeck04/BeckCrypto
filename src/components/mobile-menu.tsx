@@ -3,6 +3,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Menu, X } from "lucide-react";
 import { Fragment, useState } from "react";
+import { ThemeSwitch } from "./theme-switch";
 
 export function MobileMenu() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -64,7 +65,7 @@ export function MobileMenu() {
                 </button>
               </div>
               <div className="flow-root">
-                <div className="divide-y divide-slate-500/20">
+                <div>
                   <a
                     href="/"
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-slate-800 dark:text-slate-200"
@@ -77,6 +78,9 @@ export function MobileMenu() {
                   >
                     Watchlist
                   </a>
+                  <div className="mt-3">
+                    <ThemeSwitch />
+                  </div>
                 </div>
               </div>
             </Dialog.Panel>

@@ -8,7 +8,7 @@ export function Navbar() {
       <div className="flex flex-col lg:flex-col-reverse">
         <div className="lg:max-w-7xl lg:px-6 lg:mx-auto w-full">
           <nav className="w-full flex items-center justify-between border-b dark:border-slate-800 border-slate-200 lg:border-none py-8 px-4 lg:px-0">
-            <h3 className="font-bold text-xl">Crypto App</h3>
+            <h3 className="font-bold text-xl">Cryptosito</h3>
             <MobileMenu />
           </nav>
         </div>
