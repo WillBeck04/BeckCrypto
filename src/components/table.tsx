@@ -96,10 +96,15 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     debugTable: true,
+    initialState: {
+      pagination: {
+        pageSize: 20
+      }
+    }
   });
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg p-2 mt-6 lg:mt-12">
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-6 lg:mt-12">
       <table className="w-full text-sm text-left">
         <thead className="uppercase">
           {table.getHeaderGroups().map((headerGroup) => (
