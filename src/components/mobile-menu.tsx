@@ -78,6 +78,12 @@ export function MobileMenu() {
                   >
                     Watchlist
                   </a>
+                  <a
+                    href="/watchlist"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-8 text-slate-800 dark:text-slate-200"
+                  >
+                    Portfolio
+                  </a>
                   <div className="mt-3">
                     <ThemeSwitch />
                   </div>

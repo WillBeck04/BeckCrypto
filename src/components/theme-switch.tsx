@@ -21,7 +21,11 @@ export const ThemeSwitch = () => {
   return (
     <Popover className="relative">
       <Popover.Button className="p-1 text-slate-600 dark:text-slate-400">
-        {theme === "light" ? <Moon /> : <Sun />}
+        {theme === "light" ? (
+          <Moon className="w-6 h-6" />
+        ) : (
+          <Sun className="w-6 h-6" />
+        )}
       </Popover.Button>
 
       <Popover.Panel className="absolute z-10">
@@ -30,21 +34,21 @@ export const ThemeSwitch = () => {
             onClick={() => setTheme("system")}
             className="flex gap-3 items-center font-semibold px-6 py-2 hover:dark:bg-slate-700 hover:bg-slate-300 w-full"
           >
-            <Monitor className="text-slate-600 dark:text-slate-400" />
+            <Monitor className="text-slate-600 dark:text-slate-400 w-5 h-5" />
             System
           </button>
           <button
             onClick={() => setTheme("light")}
             className="flex gap-3 items-center font-semibold px-6 py-2 hover:dark:bg-slate-700 hover:bg-slate-300 w-full"
           >
-            <Sun className="text-slate-600 dark:text-slate-400" />
+            <Sun className="text-slate-600 dark:text-slate-400 w-5 h-5" />
             Light
           </button>
           <button
             onClick={() => setTheme("dark")}
             className="flex gap-3 items-center font-semibold px-6 py-2 hover:dark:bg-slate-700 hover:bg-slate-300 w-full"
           >
-            <Moon className="text-slate-600 dark:text-slate-400" />
+            <Moon className="text-slate-600 dark:text-slate-400 w-5 h-5" />
             Dark
           </button>
         </div>
