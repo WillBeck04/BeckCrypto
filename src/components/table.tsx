@@ -136,7 +136,10 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="border-b">
+            <tr
+              key={row.id}
+              className="border-b border-slate-200 dark:border-slate-800"
+            >
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="px-6 py-4">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
