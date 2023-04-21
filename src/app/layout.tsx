@@ -11,9 +11,8 @@ export const metadata = {
 };
 
 const inter = Inter({
-  variable: "--font-inter",
   subsets: ["latin"],
-  display: "swap",
+  variable: "--font-inter",
 });
 
 export default function RootLayout({
@@ -22,7 +21,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={inter.variable}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} font-sans`}
+    >
       <body>
         <Providers>
           <Navbar />

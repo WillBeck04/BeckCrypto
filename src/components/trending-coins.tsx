@@ -18,7 +18,7 @@ export async function TrendingCoins() {
 function TrendingCoin({ coin }: { coin: TrendingCoins[number]["item"] }) {
   return (
     <div className="border p-3 lg:w-64 text-sm shadow-slate-200 bg-slate-50 dark:bg-slate-800 dark:border-slate-800 dark:shadow-none font-medium shadow-sm h-auto min-w-max rounded-md">
-      <p>#{coin.market_cap_rank}</p>
+      <p>Rank {coin.market_cap_rank}</p>
 
       <div className="flex items-center w-full gap-2 mt-2">
         <Image

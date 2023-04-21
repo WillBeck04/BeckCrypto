@@ -36,7 +36,7 @@ const columns = [
         <p className="font-medium text-black dark:text-white">
           {props.row.original.name}
         </p>
-        <p className="text-slate-700 dark:text-slate-200">
+        <p className="text-slate-700 dark:text-slate-400 font-medium">
           {props.row.original.symbol.toUpperCase()}
         </p>
       </div>
@@ -50,7 +50,7 @@ const columns = [
   columnHelper.accessor("price_change_percentage_24h", {
     cell: (info) => (
       <p className={info.getValue() > 0 ? "text-green-500" : "text-red-500"}>
-        {info.getValue()}
+        {info.getValue().toFixed(2)}%
       </p>
     ),
     header: "24h %",
@@ -98,65 +98,67 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
     debugTable: true,
     initialState: {
       pagination: {
-        pageSize: 20
-      }
-    }
+        pageSize: 20,
+      },
+    },
   });
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-6 lg:mt-12">
-      <table className="w-full text-sm text-left">
-        <thead className="uppercase">
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  colSpan={header.colSpan}
-                  className="px-6 py-3"
-                >
-                  {header.isPlaceholder ? null : (
-                    <div
-                      {...{
-                        className: header.column.getCanSort()
-                          ? "cursor-pointer select-none"
-                          : "",
-                        onClick: header.column.getToggleSortingHandler(),
-                      }}
-                    >
-                      {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                      {{
-                        asc: " 🔼",
-                        desc: " 🔽",
-                      }[header.column.getIsSorted() as string] ?? null}
-                    </div>
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr
-              key={row.id}
-              className="border-b border-slate-200 dark:border-slate-800"
-            >
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-6 py-4">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <>
+      <div className="relative overflow-x-auto shadow-md py-2 sm:rounded-lg mt-6 lg:mt-12">
+        <table className="w-full text-sm text-left">
+          <thead className="uppercase">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    className="px-6 py-3 dark:text-slate-200 text-slate-800 text-xs"
+                  >
+                    {header.isPlaceholder ? null : (
+                      <div
+                        {...{
+                          className: header.column.getCanSort()
+                            ? "cursor-pointer select-none"
+                            : "",
+                          onClick: header.column.getToggleSortingHandler(),
+                        }}
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                        {{
+                          asc: "🔼",
+                          desc: " 🔽",
+                        }[header.column.getIsSorted() as string] ?? null}
+                      </div>
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr
+                key={row.id}
+                className="border-b border-slate-200 dark:border-slate-800"
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className="px-6 py-4">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="h-4" />
       <Pagination table={table} />
-    </div>
+    </>
   );
 }
 
