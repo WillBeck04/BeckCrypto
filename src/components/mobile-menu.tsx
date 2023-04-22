@@ -2,7 +2,7 @@
 
 import { Dialog, Transition } from "@headlessui/react";
 import { Menu, X } from "lucide-react";
-import { Fragment, useState } from "react";
+import { Fragment, ReactNode, useState } from "react";
 import { ThemeSwitch } from "./theme-switch";
 
 export function MobileMenu() {
@@ -66,24 +66,9 @@ export function MobileMenu() {
               </div>
               <div className="flow-root">
                 <div>
-                  <a
-                    href="/"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-slate-800 dark:text-slate-200"
-                  >
-                    Cryptocurrencies
-                  </a>
-                  <a
-                    href="/watchlist"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-8 text-slate-800 dark:text-slate-200"
-                  >
-                    Watchlist
-                  </a>
-                  <a
-                    href="/watchlist"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-8 text-slate-800 dark:text-slate-200"
-                  >
-                    Portfolio
-                  </a>
+                  <MenuLink href="/">Currencies</MenuLink>
+                  <MenuLink href="#">Watchlist</MenuLink>
+                  <MenuLink href="#">Portfolio</MenuLink>
                   <div className="mt-3">
                     <ThemeSwitch />
                   </div>
@@ -94,5 +79,16 @@ export function MobileMenu() {
         </Dialog>
       </Transition>
     </div>
+  );
+}
+
+function MenuLink({ children, href }: { children: ReactNode; href: string }) {
+  return (
+    <a
+      href={href}
+      className="-mx-3 block rounded-md px-3 border-b py-2 text-sm font-medium border-slate-200 dark:border-slate-800 leading-8 text-slate-800 dark:text-slate-200"
+    >
+      {children}
+    </a>
   );
 }

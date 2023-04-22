@@ -20,7 +20,7 @@ export default function TodaInfoMore({
       </button>
 
       {readMore ? (
-        <p className="text-slate-800 dark:text-slate-300 text-sm font-medium">
+        <p className="text-slate-800 dark:text-slate-300 text-sm">
           The total crypto market volume is currently{" "}
           <span className="font-semibold">
             {formatter.format(globalData.total_volume.usd)}
