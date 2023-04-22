@@ -3,19 +3,64 @@
 import { CryptoData } from "@/utils/getCryptoData";
 import { formatter } from "@/utils/formatter";
 import {
+  FilterFn,
+  SortingFn,
   SortingState,
   createColumnHelper,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  sortingFns,
   useReactTable,
 } from "@tanstack/react-table";
 import Image from "next/image";
 import { Sparklines, SparklinesLine } from "react-sparklines";
-
-import { useState } from "react";
+import {
+  RankingInfo,
+  rankItem,
+  compareItems,
+} from "@tanstack/match-sorter-utils";
+import { useEffect, useState } from "react";
 import { Pagination } from "./pagination";
+
+declare module "@tanstack/table-core" {
+  interface FilterFns {
+    fuzzy: FilterFn<unknown>;
+  }
+  interface FilterMeta {
+    itemRank: RankingInfo;
+  }
+}
+
+const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+  // Rank the item
+  const itemRank = rankItem(row.getValue(columnId), value);
+
+  // Store the itemRank info
+  addMeta({
+    itemRank,
+  });
+
+  // Return if the item should be filtered in/out
+  return itemRank.passed;
+};
+
+const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
+  let dir = 0;
+
+  // Only sort by rank if the column has ranking information
+  if (rowA.columnFiltersMeta[columnId]) {
+    dir = compareItems(
+      rowA.columnFiltersMeta[columnId]?.itemRank!,
+      rowB.columnFiltersMeta[columnId]?.itemRank!
+    );
+  }
+
+  // Provide an alphanumeric fallback for when the item ranks are equal
+  return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir;
+};
 
 const columnHelper = createColumnHelper<CryptoData[number]>();
 
@@ -87,15 +132,23 @@ const columns = [
 export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   const [data, setData] = useState(() => [...cryptoData]);
   const [sorting, setSorting] = useState<SortingState>([]);
+  const [globalFilter, setGlobalFilter] = useState("");
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    filterFns: {
+      fuzzy: fuzzyFilter,
+    },
     state: {
       sorting,
+      globalFilter,
     },
     onSortingChange: setSorting,
+    onGlobalFilterChange: setGlobalFilter,
+    globalFilterFn: fuzzyFilter,
+    getFilteredRowModel: getFilteredRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     debugTable: true,
@@ -109,6 +162,14 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   return (
     <>
       <div className="relative overflow-x-auto py-2 sm:rounded-lg mt-6 lg:mt-12">
+        <div className="my-5">
+          <DebouncedInput
+            value={globalFilter ?? ""}
+            onChange={(value) => setGlobalFilter(String(value))}
+            className="p-2  text-sm shadow border border-slate-200 dark:border-slate-800 rounded-md outline-indigo-500"
+            placeholder="Search coins..."
+          />
+        </div>
         <table className="w-full text-sm text-left">
           <thead className="uppercase border-b border-slate-200 dark:border-slate-800">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -162,5 +223,38 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
       <div className="h-4" />
       <Pagination table={table} />
     </>
+  );
+}
+
+function DebouncedInput({
+  value: initialValue,
+  onChange,
+  debounce = 500,
+  ...props
+}: {
+  value: string | number;
+  onChange: (value: string | number) => void;
+  debounce?: number;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
+  const [value, setValue] = useState(initialValue);
+
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      onChange(value);
+    }, debounce);
+
+    return () => clearTimeout(timeout);
+  }, [value]);
+
+  return (
+    <input
+      {...props}
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+    />
   );
 }

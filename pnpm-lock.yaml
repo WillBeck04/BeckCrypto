@@ -2,7 +2,9 @@ lockfileVersion: 5.4
 
 specifiers:
   '@headlessui/react': ^1.7.14
+  '@tanstack/match-sorter-utils': ^8.8.4
   '@tanstack/react-table': ^8.8.5
+  '@tanstack/table-core': ^8.8.5
   '@types/node': 18.15.11
   '@types/react': 18.0.37
   '@types/react-dom': 18.0.11
@@ -23,7 +25,9 @@ specifiers:
 
 dependencies:
   '@headlessui/react': 1.7.14_biqbaboplfbrettd7655fr4n2y
+  '@tanstack/match-sorter-utils': 8.8.4
   '@tanstack/react-table': 8.8.5_biqbaboplfbrettd7655fr4n2y
+  '@tanstack/table-core': 8.8.5
   '@types/node': 18.15.11
   '@types/react': 18.0.37
   '@types/react-dom': 18.0.11
@@ -286,6 +290,13 @@ packages:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@tanstack/match-sorter-utils/8.8.4:
+    resolution: {integrity: sha512-rKH8LjZiszWEvmi01NR72QWZ8m4xmXre0OOwlRGnjU01Eqz/QnN+cqpty2PJ0efHblq09+KilvyR7lsbzmXVEw==}
+    engines: {node: '>=12'}
+    dependencies:
+      remove-accents: 0.4.2
     dev: false
 
   /@tanstack/react-table/8.8.5_biqbaboplfbrettd7655fr4n2y:
@@ -2181,6 +2192,10 @@ packages:
       call-bind: 1.0.2
       define-properties: 1.2.0
       functions-have-names: 1.2.3
+    dev: false
+
+  /remove-accents/0.4.2:
+    resolution: {integrity: sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA==}
     dev: false
 
   /resolve-from/4.0.0:
