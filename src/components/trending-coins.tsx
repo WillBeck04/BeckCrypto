@@ -24,9 +24,10 @@ function TrendingCoin({ coin }: { coin: TrendingCoins[number]["item"] }) {
         <Image
           src={coin.small}
           alt="coin-logo"
-          width={28}
-          height={28}
-          className="rounded-full"
+          width={24}
+          height={24}
+          loading="lazy"
+          className="w-6 h-6 rounded-full"
         />
         <p className="font-semibold hidden lg:block">{coin.name}</p>
         <p className="text-slate-700 dark:text-slate-300">{coin.symbol}</p>

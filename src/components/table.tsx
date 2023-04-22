@@ -15,6 +15,7 @@ import Image from "next/image";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 
 import { useState } from "react";
+import { Pagination } from "./pagination";
 
 const columnHelper = createColumnHelper<CryptoData[number]>();
 
@@ -32,6 +33,8 @@ const columns = [
           alt="symbol"
           width={24}
           height={24}
+          loading="lazy"
+          className="w-6 h-6"
         />
         <p className="font-medium text-black dark:text-white">
           {props.row.original.name}
@@ -159,79 +162,5 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
       <div className="h-4" />
       <Pagination table={table} />
     </>
-  );
-}
-
-function Pagination({ table }: any) {
-  return (
-    <div className="flex flex-col px-4 items-center justify-between gap-2">
-      <div className="space-x-2 font-semibold ">
-        <button
-          className="border rounded p-1 w-8 dark:text-slate-300 text-slate-700 dark:border-slate-700 border-slate-200 bg-slate-100 dark:bg-slate-800"
-          onClick={() => table.setPageIndex(0)}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {"<<"}
-        </button>
-        <button
-          className="border rounded p-1 w-8 dark:text-slate-300 text-slate-700 dark:border-slate-700 border-slate-200 bg-slate-100 dark:bg-slate-800"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          {"<"}
-        </button>
-        <button
-          className="border rounded p-1 w-8 dark:text-slate-300 text-slate-700 dark:border-slate-700 border-slate-200 bg-slate-100 dark:bg-slate-800"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          {">"}
-        </button>
-        <button
-          className="border rounded p-1 w-8 dark:text-slate-300 text-slate-700 dark:border-slate-700 border-slate-200 bg-slate-100 dark:bg-slate-800"
-          onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-          disabled={!table.getCanNextPage()}
-        >
-          {">>"}
-        </button>
-      </div>
-
-      <div className="flex mt-6 w-full justify-between">
-        <span className="flex items-center dark:text-slate-300 text-slate-700 gap-1">
-          <div>Page</div>
-          <strong>
-            {table.getState().pagination.pageIndex + 1} of{" "}
-            {table.getPageCount()}
-          </strong>
-        </span>
-        <select
-          value={table.getState().pagination.pageSize}
-          onChange={(e) => {
-            table.setPageSize(Number(e.target.value));
-          }}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="hidden lg:block">
-        <span className="flex items-center gap-1">
-          Go to page:
-          <input
-            type="number"
-            defaultValue={table.getState().pagination.pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              table.setPageIndex(page);
-            }}
-            className="border p-1 rounded w-16 ml-3"
-          />
-        </span>
-      </div>
-    </div>
   );
 }
