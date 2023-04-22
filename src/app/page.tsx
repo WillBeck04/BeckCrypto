@@ -1,7 +1,6 @@
 import { Table } from "@/components/table";
 import { TrendingCoins } from "@/components/trending-coins";
 import { TodayInfo } from "@/components/today-info";
-import { getGlobalCryptoData } from "@/utils/getGlobalData";
 import { getCryptoData } from "@/utils/getCryptoData";
 
 export default async function Home() {

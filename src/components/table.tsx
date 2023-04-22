@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import { Pagination } from "./pagination";
 import { fuzzyFilter, columns } from "@/utils/helpers/cryptoTable";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import Link from "next/link";
 
 export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   const [data, setData] = useState(() => [...cryptoData]);
@@ -103,8 +104,20 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
                 className="border-b border-slate-200 dark:border-slate-800"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="px-6 py-4 dark:text-slate-300 text-slate-700 font-medium">
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  <td
+                    key={cell.id}
+                    className="px-6 py-4 dark:text-slate-300 text-slate-700 font-medium"
+                  >
+                    {cell.id.includes("name") ? (
+                      <Link href={`/cryptos/${row.original.id}`}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </Link>
+                    ) : (
+                      flexRender(cell.column.columnDef.cell, cell.getContext())
+                    )}
                   </td>
                 ))}
               </tr>

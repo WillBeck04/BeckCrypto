@@ -1,6 +1,10 @@
+import { getCryptoDetails } from "@/utils/getCryptoDetails";
 
-export default function CryptoPage() {
-  return (
-    <div>page</div>
-  )
+export default async function CryptoPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const coinDetails = await getCryptoDetails(params.id);
+  return <div>{JSON.stringify(coinDetails)}</div>;
 }
