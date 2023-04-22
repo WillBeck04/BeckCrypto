@@ -70,12 +70,14 @@ export const columns = [
           loading="lazy"
           className="w-6 h-6"
         />
-        <p className="font-semibold text-black dark:text-white">
-          {props.row.original.name}
-        </p>
-        <p className="text-slate-600 dark:text-slate-400 font-medium">
-          {props.row.original.symbol.toUpperCase()}
-        </p>
+        <div>
+          <p className="font-semibold text-black dark:text-white">
+            {props.row.original.name}
+          </p>
+          <p className="text-slate-600 dark:text-slate-400 font-medium">
+            {props.row.original.symbol.toUpperCase()}
+          </p>
+        </div>
       </div>
     ),
   }),
@@ -106,7 +108,7 @@ export const columns = [
   }),
   columnHelper.accessor("sparkline_in_7d", {
     cell: (info) => (
-      <Sparklines data={info.getValue().price} style={{width: 100}}>
+      <Sparklines data={info.getValue().price} style={{ width: 100 }}>
         <SparklinesLine
           color={
             info.row.original.price_change_percentage_24h > 0 ? "teal" : "red"

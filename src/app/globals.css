@@ -5,3 +5,33 @@
 body {
   @apply bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-slate-100;
 }
+
+@layer components {
+  td:nth-child(2) {
+    @apply sticky left-0 bg-slate-100 dark:bg-slate-900;
+  }
+  
+  td:nth-child(3) {
+    @apply text-right
+  }
+  td:nth-child(4) {
+    @apply text-right
+  }
+  td:nth-child(5) {
+    @apply text-right
+  }
+  td:nth-child(6) {
+    @apply text-right
+  }
+  td:nth-child(7) {
+    @apply text-right
+  }
+
+  td:first-child {
+    @apply hidden lg:inline-block
+  }
+  th:first-child {
+    @apply hidden lg:inline-block
+  }
+  
+}

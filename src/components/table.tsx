@@ -13,6 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { Pagination } from "./pagination";
 import { fuzzyFilter, columns } from "@/utils/helpers/cryptoTable";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   const [data, setData] = useState(() => [...cryptoData]);
@@ -46,7 +47,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
 
   return (
     <>
-      <div className="relative overflow-x-auto py-2 sm:rounded-lg mt-6 lg:mt-12">
+      <div className="relative overflow-x-auto py-2 sm:rounded-lg mt-6">
         <div className="my-5 px-4 lg:px-0">
           <DebouncedInput
             value={globalFilter ?? ""}
@@ -69,19 +70,25 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
                       <div
                         {...{
                           className: header.column.getCanSort()
-                            ? "cursor-pointer select-none"
+                            ? "inline-flex min-w-max cursor-pointer select-none"
                             : "",
                           onClick: header.column.getToggleSortingHandler(),
                         }}
                       >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                        {{
-                          asc: "🔼",
-                          desc: " 🔽",
-                        }[header.column.getIsSorted() as string] ?? null}
+                        <div className="inline-flex space-x-2">
+                          <p>
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                          </p>
+                          <p>
+                            {{
+                              asc: <ChevronUp className="w-4 h-4" />,
+                              desc: <ChevronDown className="w-4 h-4" />,
+                            }[header.column.getIsSorted() as string] ?? null}
+                          </p>
+                        </div>
                       </div>
                     )}
                   </th>
@@ -96,7 +103,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
                 className="border-b border-slate-200 dark:border-slate-800"
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="px-6 py-4">
+                  <td key={cell.id} className="px-6 py-4 dark:text-slate-300 text-slate-700 font-medium">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
