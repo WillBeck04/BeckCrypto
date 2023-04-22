@@ -5,9 +5,9 @@ import Link from "next/link";
 export async function TrendingCoins() {
   const trendingCoins = await getTrendingCoins();
   return (
-    <div className="mt-6 lg:mt-12 px-4 lg:px-0">
-      <h2 className="lg:text-2xl text-lg font-semibold">Trending coins</h2>{" "}
-      <div className="flex lg:flex-wrap gap-6 py-3 mt-3 overflow-auto">
+    <div className="mt-6  px-4 lg:px-0">
+      <h2 className="lg:text-xl text-lg font-semibold">Trending coins</h2>{" "}
+      <div className="flex lg:flex-wrap gap-6 py-3 mt-2 overflow-auto">
         {trendingCoins.map((coin) => (
           <TrendingCoin key={coin.item.id} coin={coin.item} />
         ))}

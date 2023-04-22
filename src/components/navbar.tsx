@@ -12,9 +12,15 @@ export function Navbar() {
             <Link href="/">
               <h3 className="font-bold text-xl">Cryptosito</h3>
             </Link>
-            <ul className="hidden lg:flex text-sm font-medium ml-12">
+            <ul className="hidden lg:flex space-x-5 text-sm font-medium ml-12">
               <li>
                 <Link href="/">Currencies</Link>
+              </li>
+              <li>
+                <Link href="/watchlist">Watchlist</Link>
+              </li>
+              <li>
+                <Link href="/">Portfolio</Link>
               </li>
             </ul>
             <MobileMenu />

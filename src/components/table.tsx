@@ -13,7 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { Pagination } from "./pagination";
 import { fuzzyFilter, columns } from "@/utils/helpers/cryptoTable";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, StarIcon } from "lucide-react";
 import Link from "next/link";
 
 export function Table({ cryptoData }: { cryptoData: CryptoData }) {
@@ -53,7 +53,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
           <DebouncedInput
             value={globalFilter ?? ""}
             onChange={(value) => setGlobalFilter(String(value))}
-            className="px-4 py-2 text-sm shadow border border-slate-200 dark:border-slate-800 rounded-md outline-indigo-500"
+            className="px-4 py-2 text-sm border border-slate-200 dark:border-slate-800 rounded-md outline-indigo-500"
             placeholder="Search coins..."
           />
         </div>
@@ -61,6 +61,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
           <thead className="uppercase border-b border-slate-200 dark:border-slate-800">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
+                <th></th>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
@@ -103,6 +104,11 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
                 key={row.id}
                 className="border-b border-slate-200 dark:border-slate-800"
               >
+                <td>
+                  <StarIcon
+                    className="w-4 h-4"
+                  />
+                </td>
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
