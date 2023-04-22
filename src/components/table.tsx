@@ -162,11 +162,11 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   return (
     <>
       <div className="relative overflow-x-auto py-2 sm:rounded-lg mt-6 lg:mt-12">
-        <div className="my-5">
+        <div className="my-5 px-4 lg:px-0">
           <DebouncedInput
             value={globalFilter ?? ""}
             onChange={(value) => setGlobalFilter(String(value))}
-            className="p-2  text-sm shadow border border-slate-200 dark:border-slate-800 rounded-md outline-indigo-500"
+            className="px-4 py-2 text-sm shadow border border-slate-200 dark:border-slate-800 rounded-md outline-indigo-500"
             placeholder="Search coins..."
           />
         </div>

@@ -12,7 +12,7 @@ export function MobileMenu() {
       <div className="flex lg:hidden">
         <button
           type="button"
-          className="group -m-2.5 inline-flex items-center justify-center rounded-lg border border-slate-300 p-1.5  dark:border-slate-600 dark:text-slate-500"
+          className="group inline-flex items-center justify-center rounded-lg border border-slate-300 p-1.5  dark:border-slate-600 dark:text-slate-500"
           onClick={() => setMobileMenu(true)}
         >
           <span className="sr-only">Open main menu</span>
