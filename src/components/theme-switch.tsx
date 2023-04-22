@@ -32,21 +32,21 @@ export const ThemeSwitch = () => {
         <div className="flex  rounded-md flex-col gap-3 text-xs dark:bg-slate-800 shadow-md bg-slate-200">
           <button
             onClick={() => setTheme("system")}
-            className="flex gap-3 items-center font-semibold px-6 py-2 hover:dark:bg-slate-700 hover:bg-slate-300 w-full"
+            className="flex gap-3 items-center font-semibold px-4 py-2 hover:dark:bg-slate-700 hover:bg-slate-300 w-full"
           >
             <Monitor className="text-slate-600 dark:text-slate-400 w-5 h-5" />
             System
           </button>
           <button
             onClick={() => setTheme("light")}
-            className="flex gap-3 items-center font-semibold px-6 py-2 hover:dark:bg-slate-700 hover:bg-slate-300 w-full"
+            className="flex gap-3 items-center font-semibold px-4 py-2 hover:dark:bg-slate-700 hover:bg-slate-300 w-full"
           >
             <Sun className="text-slate-600 dark:text-slate-400 w-5 h-5" />
             Light
           </button>
           <button
             onClick={() => setTheme("dark")}
-            className="flex gap-3 items-center font-semibold px-6 py-2 hover:dark:bg-slate-700 hover:bg-slate-300 w-full"
+            className="flex gap-3 items-center font-semibold px-4 py-2 hover:dark:bg-slate-700 hover:bg-slate-300 w-full"
           >
             <Moon className="text-slate-600 dark:text-slate-400 w-5 h-5" />
             Dark

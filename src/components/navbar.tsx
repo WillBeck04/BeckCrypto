@@ -8,8 +8,10 @@ export function Navbar() {
     <header className="border-b dark:border-slate-800 border-slate-200">
       <div className="flex flex-col lg:flex-col-reverse">
         <div className="lg:max-w-7xl lg:px-6 lg:mx-auto w-full">
-          <nav className="w-full flex items-center lg:items-baseline lg:justify-normal justify-between border-b dark:border-slate-800 border-slate-200 lg:border-none py-8 px-4 lg:px-0">
-            <h3 className="font-bold text-xl">Cryptosito</h3>
+          <nav className="w-full flex items-baseline lg:justify-normal justify-between border-b dark:border-slate-800 border-slate-200 lg:border-none py-8 px-4 lg:px-0">
+            <Link href="/">
+              <h3 className="font-bold text-xl">Cryptosito</h3>
+            </Link>
             <ul className="hidden lg:flex text-sm font-medium ml-12">
               <li>
                 <Link href="/">Currencies</Link>
