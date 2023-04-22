@@ -7,31 +7,33 @@ body {
 }
 
 @layer components {
-  td:nth-child(2) {
+  td:nth-child(3) {
     @apply sticky left-0 bg-slate-100 dark:bg-slate-900;
   }
-  
-  td:nth-child(3) {
-    @apply text-right
-  }
-  td:nth-child(4) {
-    @apply text-right
-  }
-  td:nth-child(5) {
-    @apply text-right
-  }
-  td:nth-child(6) {
-    @apply text-right
-  }
-  td:nth-child(7) {
-    @apply text-right
+  td:first-child {
+    @apply sticky left-0 z-10 bg-slate-100 dark:bg-slate-900;
   }
 
-  td:first-child {
-    @apply hidden lg:inline-block
+  td:nth-child(4) {
+    @apply text-right;
   }
-  th:first-child {
-    @apply hidden lg:inline-block
+  td:nth-child(5) {
+    @apply text-right;
   }
-  
+  td:nth-child(6) {
+    @apply text-right;
+  }
+  td:nth-child(7) {
+    @apply text-right;
+  }
+  td:nth-child(8) {
+    @apply text-right;
+  }
+
+  td:nth-child(2) {
+    @apply hidden lg:table-cell;
+  }
+  th:nth-child(2) {
+    @apply hidden lg:table-cell;
+  }
 }

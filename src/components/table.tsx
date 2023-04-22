@@ -10,16 +10,26 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Pagination } from "./pagination";
 import { fuzzyFilter, columns } from "@/utils/helpers/cryptoTable";
 import { ChevronDown, ChevronUp, StarIcon } from "lucide-react";
 import Link from "next/link";
+import { WatchlistContext } from "@/app/providers";
 
 export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   const [data, setData] = useState(() => [...cryptoData]);
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
+  const { watchlist, setWatchlist } = useContext(WatchlistContext);
+
+  const handleAddCoin = (newCoin: string) => {
+    setWatchlist([...watchlist, newCoin]);
+  };
+
+  const handleRemoveCoin = (coinId: string) => {
+    setWatchlist(watchlist.filter((id) => id !== coinId));
+  };
 
   const table = useReactTable({
     data,
@@ -104,9 +114,18 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
                 key={row.id}
                 className="border-b border-slate-200 dark:border-slate-800"
               >
-                <td>
+                <td className="cursor-pointer">
                   <StarIcon
-                    className="w-4 h-4"
+                    className={
+                      watchlist.includes(row.original.id)
+                        ? "w-4 h-4 fill-yellow-500 text-yellow-500"
+                        : "w-4 h-4"
+                    }
+                    onClick={() => {
+                      watchlist.includes(row.original.id)
+                        ? handleRemoveCoin(row.original.id)
+                        : handleAddCoin(row.original.id);
+                    }}
                   />
                 </td>
                 {row.getVisibleCells().map((cell) => (
