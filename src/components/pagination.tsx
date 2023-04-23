@@ -1,8 +1,11 @@
+import { CryptoData } from '@/utils/getCryptoData'
+import { Table } from '@tanstack/table-core'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { Input } from './ui/input'
 
-export function Pagination({ table }: any) {
+export function Pagination({ table }: { table: Table<CryptoData> }) {
   return (
-    <div className="mt-6 flex flex-col items-center justify-between gap-2 px-4">
+    <div className="flex flex-col items-center justify-between gap-2 px-4">
       <div className="space-x-2 font-semibold">
         <button
           className="rounded border border-slate-200 bg-slate-100 p-1 text-slate-700 hover:bg-indigo-500/10 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-indigo-400/10"
@@ -42,7 +45,7 @@ export function Pagination({ table }: any) {
 
       <div className="mt-6 flex w-full items-center justify-between text-sm lg:mt-0">
         <div>
-          <span className="flex items-center gap-1 text-slate-700 dark:text-slate-300">
+          <span className="flex items-center gap-1 text-slate-700 dark:text-slate-100">
             <div>Page</div>
             <strong>
               {table.getState().pagination.pageIndex + 1} of{' '}
@@ -50,34 +53,37 @@ export function Pagination({ table }: any) {
             </strong>
           </span>
           <div className="mt-3 hidden lg:block">
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1 text-slate-700 dark:text-slate-100">
               Go to page:
-              <input
+              <Input
                 type="number"
                 defaultValue={table.getState().pagination.pageIndex + 1}
+                min={0}
                 onChange={(e) => {
                   const page = e.target.value ? Number(e.target.value) - 1 : 0
                   table.setPageIndex(page)
                 }}
-                className="ml-3 w-16 rounded border p-1"
+                className="ml-3 w-16 rounded-md border p-1 dark:bg-slate-800"
               />
             </span>
           </div>
         </div>
-
-        <select
-          value={table.getState().pagination.pageSize}
-          onChange={(e) => {
-            table.setPageSize(Number(e.target.value))
-          }}
-          className="rounded-md p-2"
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
+        <div>
+          <label className="text-sm">Show rows</label>
+          <select
+            value={table.getState().pagination.pageSize}
+            onChange={(e) => {
+              table.setPageSize(Number(e.target.value))
+            }}
+            className="ml-3 rounded-md border-indigo-500 px-4 py-1 text-sm focus:ring focus:ring-indigo-400 dark:bg-slate-800"
+          >
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                {pageSize}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   )
