@@ -8,13 +8,10 @@ body {
 
 @layer components {
   td:nth-child(3) {
-    @apply sticky left-0 bg-slate-100 dark:bg-slate-900;
+    @apply sticky left-0 bg-slate-100 dark:bg-slate-900 lg:bg-inherit;
   }
   th:nth-child(3) {
-    @apply sticky left-0 bg-slate-100 dark:bg-slate-900;
-  }
-  td:first-child {
-    @apply sticky left-0 z-10 bg-slate-100 dark:bg-slate-900;
+    @apply sticky left-0 bg-slate-100 dark:bg-slate-900 lg:bg-inherit;
   }
 
   td:nth-child(4) {

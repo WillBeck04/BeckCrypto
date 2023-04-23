@@ -2,7 +2,7 @@ import { TrendingCoins } from '@/components/trending-coins'
 import { getCryptoDetails } from '@/utils/getCryptoDetails'
 import { CoinInfo } from './coin-info'
 import { CoinDescription } from './coin-description'
-import { Container } from '@/components/container'
+import { Container } from '@/components/ui/container'
 import { CoinChart } from './coin-chart'
 
 export default async function CryptoPage({
