@@ -1,7 +1,8 @@
-"use client";
+'use client'
 
-import { CryptoData } from "@/utils/getCryptoData";
+import { CryptoData } from '@/utils/getCryptoData'
 import {
+  Row,
   SortingState,
   flexRender,
   getCoreRowModel,
@@ -9,27 +10,29 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import { useContext, useEffect, useState } from "react";
-import { Pagination } from "./pagination";
-import { fuzzyFilter, columns } from "@/utils/helpers/cryptoTable";
-import { ChevronDown, ChevronUp, StarIcon } from "lucide-react";
-import Link from "next/link";
-import { WatchlistContext } from "@/app/providers";
+} from '@tanstack/react-table'
+import { useContext, useEffect, useState } from 'react'
+import { Pagination } from './pagination'
+import { fuzzyFilter, columns } from '@/utils/helpers/cryptoTable'
+import { ChevronDown, ChevronUp, StarIcon } from 'lucide-react'
+import Link from 'next/link'
+import { WatchlistContext } from '@/app/providers'
+import { TableRow } from './table-row'
+import { DebouncedInput } from './debounced-input'
 
 export function Table({ cryptoData }: { cryptoData: CryptoData }) {
-  const [data, setData] = useState(() => [...cryptoData]);
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const [globalFilter, setGlobalFilter] = useState("");
-  const { watchlist, setWatchlist } = useContext(WatchlistContext);
+  const [data, setData] = useState(() => [...cryptoData])
+  const [sorting, setSorting] = useState<SortingState>([])
+  const [globalFilter, setGlobalFilter] = useState('')
+  const { watchlist, setWatchlist } = useContext(WatchlistContext)
 
   const handleAddCoin = (newCoin: string) => {
-    setWatchlist([...watchlist, newCoin]);
-  };
+    setWatchlist([...watchlist, newCoin])
+  }
 
   const handleRemoveCoin = (coinId: string) => {
-    setWatchlist(watchlist.filter((id) => id !== coinId));
-  };
+    setWatchlist(watchlist.filter((id) => id !== coinId))
+  }
 
   const table = useReactTable({
     data,
@@ -54,20 +57,20 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
         pageSize: 20,
       },
     },
-  });
+  })
 
   return (
     <>
-      <div className="relative  px-4 lg:px-0 overflow-x-auto py-2 sm:rounded-lg">
+      <div className="relative overflow-x-auto px-4 py-2 sm:rounded-lg lg:px-0">
         <div className="my-5">
           <DebouncedInput
-            value={globalFilter ?? ""}
+            value={globalFilter ?? ''}
             onChange={(value) => setGlobalFilter(String(value))}
             placeholder="Search coins..."
           />
         </div>
-        <table className="w-full text-sm text-left">
-          <thead className="uppercase border-b border-slate-200 dark:border-slate-800">
+        <table className="w-full text-left text-sm">
+          <thead className="border-b border-slate-200 uppercase dark:border-slate-800">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 <th></th>
@@ -75,14 +78,14 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
                   <th
                     key={header.id}
                     colSpan={header.colSpan}
-                    className="px-6 py-3 dark:text-slate-200 text-slate-800 text-xs"
+                    className="px-6 py-3 text-xs text-slate-800 dark:text-slate-200"
                   >
                     {header.isPlaceholder ? null : (
                       <div
                         {...{
                           className: header.column.getCanSort()
-                            ? "inline-flex min-w-max cursor-pointer select-none"
-                            : "",
+                            ? 'inline-flex min-w-max cursor-pointer select-none'
+                            : '',
                           onClick: header.column.getToggleSortingHandler(),
                         }}
                       >
@@ -95,8 +98,8 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
                           </p>
                           <p>
                             {{
-                              asc: <ChevronUp className="w-4 h-4" />,
-                              desc: <ChevronDown className="w-4 h-4" />,
+                              asc: <ChevronUp className="h-4 w-4" />,
+                              desc: <ChevronDown className="h-4 w-4" />,
                             }[header.column.getIsSorted() as string] ?? null}
                           </p>
                         </div>
@@ -109,42 +112,13 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (
-              <tr
+              <TableRow
                 key={row.id}
-                className="border-b border-slate-200 dark:border-slate-800"
-              >
-                <td className="cursor-pointer">
-                  <StarIcon
-                    className={
-                      watchlist.includes(row.original.id)
-                        ? "w-4 h-4 fill-yellow-500 text-yellow-500"
-                        : "w-4 h-4"
-                    }
-                    onClick={() => {
-                      watchlist.includes(row.original.id)
-                        ? handleRemoveCoin(row.original.id)
-                        : handleAddCoin(row.original.id);
-                    }}
-                  />
-                </td>
-                {row.getVisibleCells().map((cell) => (
-                  <td
-                    key={cell.id}
-                    className="px-6 py-4 dark:text-slate-300 text-slate-700 font-medium"
-                  >
-                    {cell.id.includes("name") ? (
-                      <Link href={`/cryptos/${row.original.id}`}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </Link>
-                    ) : (
-                      flexRender(cell.column.columnDef.cell, cell.getContext())
-                    )}
-                  </td>
-                ))}
-              </tr>
+                row={row}
+                handleAddCoin={handleAddCoin}
+                handleRemoveCoin={handleRemoveCoin}
+                watchlist={watchlist}
+              />
             ))}
           </tbody>
         </table>
@@ -152,39 +126,5 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
       <div className="h-4" />
       <Pagination table={table} />
     </>
-  );
-}
-
-function DebouncedInput({
-  value: initialValue,
-  onChange,
-  debounce = 500,
-  ...props
-}: {
-  value: string | number;
-  onChange: (value: string | number) => void;
-  debounce?: number;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange">) {
-  const [value, setValue] = useState(initialValue);
-
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      onChange(value);
-    }, debounce);
-
-    return () => clearTimeout(timeout);
-  }, [value]);
-
-  return (
-    <input
-      {...props}
-      value={value}
-      onChange={(e) => setValue(e.target.value)}
-      className="px-4 py-2 text-sm border border-slate-200 dark:border-slate-800 rounded-md outline-indigo-500"
-    />
-  );
+  )
 }

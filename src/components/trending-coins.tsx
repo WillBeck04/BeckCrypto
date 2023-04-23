@@ -5,7 +5,7 @@ import Link from "next/link";
 export async function TrendingCoins() {
   const trendingCoins = await getTrendingCoins();
   return (
-    <div className="mt-6  px-4 lg:px-0">
+    <div className="mt-6 px-4 lg:px-0">
       <h2 className="lg:text-xl text-lg font-semibold">Trending coins</h2>{" "}
       <div className="flex lg:flex-wrap gap-6 py-3 mt-2 overflow-auto">
         {trendingCoins.map((coin) => (
@@ -19,7 +19,7 @@ export async function TrendingCoins() {
 function TrendingCoin({ coin }: { coin: TrendingCoins[number]["item"] }) {
   return (
     <Link href={`/cryptos/${coin.id}`}>
-      <div className="border p-3 lg:w-64 text-sm shadow-slate-200 bg-slate-50 dark:bg-slate-800 dark:border-slate-800 dark:shadow-none font-medium shadow-sm h-auto min-w-max rounded-md">
+      <div className="border p-3 lg:w-64 text-sm shadow-slate-200 hover:dark:bg-slate-700 transition-all hover:bg-slate-100 bg-slate-50 dark:bg-slate-800 dark:border-slate-800 dark:shadow-none font-medium shadow-sm h-auto min-w-max rounded-md">
         <p>Rank {coin.market_cap_rank}</p>
 
         <div className="flex items-center w-full gap-2 mt-2">

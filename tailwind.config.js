@@ -1,19 +1,19 @@
 /** @type {import('tailwindcss').Config} */
-const { fontFamily } = require("tailwindcss/defaultTheme");
+const { fontFamily } = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  darkMode: "class",
+  darkMode: 'class',
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
-    "./src/app/**/*.{js,ts,jsx,tsx}",
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-inter)", ...fontFamily.sans],
+        sans: ['var(--font-inter)', ...fontFamily.sans],
       },
     },
   },
-  plugins: [],
-};
+  plugins: [require('@tailwindcss/forms')],
+}

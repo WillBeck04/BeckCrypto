@@ -18,6 +18,7 @@
     "@types/react-dom": "18.0.11",
     "@types/react-sparklines": "^1.7.2",
     "autoprefixer": "10.4.14",
+    "clsx": "^1.2.1",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "lucide-react": "^0.171.0",
@@ -27,9 +28,16 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-sparklines": "^1.7.0",
+    "tailwind-merge": "^1.12.0",
     "tailwindcss": "3.3.1",
     "typescript": "5.0.4",
     "usehooks-ts": "^2.9.1",
     "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "install": "^0.13.0",
+    "prettier": "^2.8.8",
+    "prettier-plugin-tailwindcss": "^0.2.7"
   }
 }

@@ -3,7 +3,7 @@
 import { useContext, useEffect, useMemo, useState } from "react";
 import { WatchlistContext } from "../providers";
 import { CryptoData } from "@/utils/getCryptoData";
-import { RemoveFromWatchlistButton } from "@/components/RemoveFromWatchlistButton";
+import { RemoveFromWatchlistButton } from "@/components/watchlist-remove-button";
 
 export function WatchlistInfo({ cryptoData }: { cryptoData: CryptoData }) {
   const [watchlistData, setWatchlistData] = useState<CryptoData>();
