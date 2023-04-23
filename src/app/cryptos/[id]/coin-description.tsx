@@ -33,7 +33,7 @@ export function CoinDescription({
       )}
       {description.en.length > 290 && (
         <button
-          className="flex h-10 w-full mt-3 items-center justify-center self-center rounded-lg bg-gray-500/20 font-bold text-gray-200 md:w-36"
+          className="mt-3 flex h-10 w-full items-center justify-center self-center rounded-lg bg-gray-500/20 text-sm font-bold text-gray-200 md:w-36"
           onClick={() => setShowMore((prev) => !prev)}
         >
           <p className="text-gray-600 dark:text-gray-200">

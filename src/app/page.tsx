@@ -7,7 +7,7 @@ export default async function Home() {
   const data = await getCryptoData();
 
   return (
-    <main className="lg:py-12 py-6">
+    <main>
       {/* @ts-expect-error Async Server Component */}
       <TodayInfo />
       {/* @ts-expect-error Async Server Component */}

@@ -5,7 +5,7 @@ import { Input } from './ui/input'
 
 export function Pagination({ table }: { table: Table<CryptoData[number]> }) {
   return (
-    <div className="flex flex-col items-center justify-between gap-2 px-4">
+    <div className="flex flex-col items-center justify-between gap-2">
       <div className="space-x-2 font-semibold">
         <button
           className="rounded border border-slate-200 bg-slate-100 p-1 text-slate-700 hover:bg-indigo-500/10 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-indigo-400/10"

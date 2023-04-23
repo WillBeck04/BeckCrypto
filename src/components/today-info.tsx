@@ -1,36 +1,36 @@
-import { getGlobalCryptoData } from "@/utils/getGlobalData";
-import TodaInfoMore from "./today-info-more";
+import { getGlobalCryptoData } from '@/utils/getGlobalData'
+import TodaInfoMore from './today-info-more'
 
 export async function TodayInfo() {
-  const globalData = await getGlobalCryptoData();
+  const globalData = await getGlobalCryptoData()
   return (
-    <div className="w-full px-4 lg:px-0">
-      <h2 className="lg:text-2xl text-lg font-semibold">
+    <div className="w-full lg:px-0">
+      <h2 className="text-lg font-semibold lg:text-2xl">
         Today&apos;s Cryptocurrency Prices by Market Cap
       </h2>
-      <p className="mt-2 text-slate-800 dark:text-slate-300 text-sm">
+      <p className="mt-2 text-sm text-slate-800 dark:text-slate-300">
         The global crypto market cap is $
         <span className="font-semibold">
           {globalData.total_market_cap.usd.toFixed(0)}
         </span>
-        , a{" "}
+        , a{' '}
         <span
           className={
             globalData.market_cap_change_percentage_24h_usd > 0
-              ? "text-green-500 font-semibold"
-              : "text-red-500 font-semibold"
+              ? 'font-semibold text-green-500'
+              : 'font-semibold text-red-500'
           }
         >
           {globalData.market_cap_change_percentage_24h_usd.toFixed(2)}%
-        </span>{" "}
+        </span>{' '}
         <span>
           {globalData.market_cap_change_percentage_24h_usd > 0
-            ? "increase"
-            : "decrease"}
-        </span>{" "}
+            ? 'increase'
+            : 'decrease'}
+        </span>{' '}
         over the last day.
       </p>
       <TodaInfoMore globalData={globalData} />
     </div>
-  );
+  )
 }

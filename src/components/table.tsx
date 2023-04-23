@@ -61,7 +61,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
 
   return (
     <>
-      <div className="relative overflow-x-auto px-4 py-2 sm:rounded-lg lg:px-0">
+      <div className="relative overflow-x-auto py-2 sm:rounded-lg lg:px-0">
         <div className="my-5">
           <DebouncedInput
             value={globalFilter ?? ''}

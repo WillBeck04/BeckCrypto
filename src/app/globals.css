@@ -10,6 +10,9 @@ body {
   td:nth-child(3) {
     @apply sticky left-0 bg-slate-100 dark:bg-slate-900;
   }
+  th:nth-child(3) {
+    @apply sticky left-0 bg-slate-100 dark:bg-slate-900;
+  }
   td:first-child {
     @apply sticky left-0 z-10 bg-slate-100 dark:bg-slate-900;
   }

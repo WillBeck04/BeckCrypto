@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import { Dialog, Transition } from "@headlessui/react";
-import { Menu, X } from "lucide-react";
-import { Fragment, ReactNode, useState } from "react";
-import { ThemeSwitch } from "./theme-switch";
+import { Dialog, Transition } from '@headlessui/react'
+import { Menu, X } from 'lucide-react'
+import { Fragment, ReactNode, useState } from 'react'
+import { ThemeSwitch } from './theme-switch'
 
 export function MobileMenu() {
-  const [mobileMenu, setMobileMenu] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false)
   return (
     <div>
       <div className="flex lg:hidden">
@@ -67,8 +67,8 @@ export function MobileMenu() {
               <div className="flow-root">
                 <div>
                   <MenuLink href="/">Currencies</MenuLink>
-                  <MenuLink href="#">Watchlist</MenuLink>
-                  <MenuLink href="#">Portfolio</MenuLink>
+                  <MenuLink href="/watchlist">Watchlist</MenuLink>
+                  <MenuLink href="/portfolio">Portfolio</MenuLink>
                   <div className="mt-3">
                     <ThemeSwitch />
                   </div>
@@ -79,16 +79,16 @@ export function MobileMenu() {
         </Dialog>
       </Transition>
     </div>
-  );
+  )
 }
 
 function MenuLink({ children, href }: { children: ReactNode; href: string }) {
   return (
     <a
       href={href}
-      className="-mx-3 block rounded-md px-3 border-b py-2 text-sm font-medium border-slate-200 dark:border-slate-800 leading-8 text-slate-800 dark:text-slate-200"
+      className="-mx-3 block rounded-md border-b border-slate-200 px-3 py-2 text-sm font-medium leading-8 text-slate-800 dark:border-slate-800 dark:text-slate-200"
     >
       {children}
     </a>
-  );
+  )
 }

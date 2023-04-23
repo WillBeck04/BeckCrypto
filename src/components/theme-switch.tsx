@@ -20,11 +20,11 @@ export const ThemeSwitch = () => {
 
   return (
     <Popover className="relative">
-      <Popover.Button className="p-1 text-slate-600 dark:text-slate-400">
+      <Popover.Button className="p-1">
         {theme === 'light' ? (
-          <Moon className="h-6 w-6" />
+          <Moon className="h-5 w-5 text-slate-600" />
         ) : (
-          <Sun className="h-6 w-6" />
+          <Sun className="h-5 w-5" />
         )}
       </Popover.Button>
 

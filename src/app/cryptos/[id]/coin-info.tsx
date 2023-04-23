@@ -6,7 +6,7 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
   return (
     <div className="flex flex-col">
       <div>
-        <div className="flex gap-3">
+        <div className="flex items-center gap-3">
           <Image
             src={coinData.image.large}
             width={40}
@@ -37,10 +37,9 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
             </a>
           </button>
         </div>
-        <div className="mb-10 mt-5">Buy some coin</div>
       </div>
-      <div className="lg:w-1/2">
-        <p className="mt-10 text-3xl font-bold text-gray-900 dark:text-gray-50 md:mt-0">
+      <div className="mt-5 lg:w-1/2">
+        <p className="text-xl font-bold text-gray-900 [text-wrap:balance] dark:text-gray-50">
           {coinData.name} Price ({coinData.symbol.toUpperCase()})
         </p>
         <div className="flex items-center gap-3 align-middle">
