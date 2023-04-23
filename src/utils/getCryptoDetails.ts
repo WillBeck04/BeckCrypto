@@ -43,7 +43,7 @@ const cryptoDetailsSchema = z.object({
   }),
 });
 
-export type CryptoData = z.infer<typeof cryptoDetailsSchema>;
+export type CryptoDetails = z.infer<typeof cryptoDetailsSchema>;
 
 export async function getCryptoDetails(id: string) {
   const res = await fetch(
