@@ -1,6 +1,5 @@
 import { getCryptoData } from '@/utils/getCryptoData'
 import { WatchlistInfo } from './watchlistInfo'
-import { Container } from '@/components/container'
 
 export default async function WatchlistPage() {
   const cryptoData = await getCryptoData()
