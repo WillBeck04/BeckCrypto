@@ -58,12 +58,11 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
 
   return (
     <>
-      <div className="relative overflow-x-auto py-2 sm:rounded-lg mt-6">
-        <div className="my-5 px-4 lg:px-0">
+      <div className="relative  px-4 lg:px-0 overflow-x-auto py-2 sm:rounded-lg">
+        <div className="my-5">
           <DebouncedInput
             value={globalFilter ?? ""}
             onChange={(value) => setGlobalFilter(String(value))}
-            className="px-4 py-2 text-sm border border-slate-200 dark:border-slate-800 rounded-md outline-indigo-500"
             placeholder="Search coins..."
           />
         </div>
@@ -185,6 +184,7 @@ function DebouncedInput({
       {...props}
       value={value}
       onChange={(e) => setValue(e.target.value)}
+      className="px-4 py-2 text-sm border border-slate-200 dark:border-slate-800 rounded-md outline-indigo-500"
     />
   );
 }
