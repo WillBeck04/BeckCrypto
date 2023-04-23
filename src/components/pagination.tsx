@@ -3,7 +3,7 @@ import { Table } from '@tanstack/table-core'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Input } from './ui/input'
 
-export function Pagination({ table }: { table: Table<CryptoData> }) {
+export function Pagination({ table }: { table: Table<CryptoData[number]> }) {
   return (
     <div className="flex flex-col items-center justify-between gap-2 px-4">
       <div className="space-x-2 font-semibold">

@@ -1,30 +1,34 @@
-"use client";
+'use client'
 
-import { useContext, useEffect, useMemo, useState } from "react";
-import { WatchlistContext } from "../providers";
-import { CryptoData } from "@/utils/getCryptoData";
-import { RemoveFromWatchlistButton } from "@/components/watchlist-remove-button";
+import { useContext, useEffect, useState } from 'react'
+import { WatchlistContext } from '../providers'
+import { CryptoData } from '@/utils/getCryptoData'
+import Link from 'next/link'
+import { Table } from '@/components/table'
 
 export function WatchlistInfo({ cryptoData }: { cryptoData: CryptoData }) {
-  const [watchlistData, setWatchlistData] = useState<CryptoData>();
-  const { watchlist } = useContext(WatchlistContext);
+  const [watchlistData, setWatchlistData] = useState<CryptoData>()
+  const { watchlist } = useContext(WatchlistContext)
 
   useEffect(() => {
     const filteredData = cryptoData.filter((coin) =>
       watchlist.includes(coin.id)
-    );
+    )
 
-    setWatchlistData(filteredData);
-  }, [cryptoData, watchlist]);
+    setWatchlistData(filteredData)
+  }, [cryptoData, watchlist])
 
-  return (
-    <div>
-      {watchlistData?.map((coin) => (
-        <div key={coin.id}>
-          <p>{coin.name}</p>
-          <RemoveFromWatchlistButton coinId={coin.id} />
-        </div>
-      ))}
-    </div>
-  );
+  if (watchlistData?.length === 0) {
+    return (
+      <div>
+        <p>Add coins to your watchlist to see them here!</p>
+        <Link href="/">Add Coins</Link>
+      </div>
+    )
+  }
+  if (!watchlistData) {
+    return null
+  }
+
+  return <Table cryptoData={watchlistData} />
 }
