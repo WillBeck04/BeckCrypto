@@ -12,7 +12,7 @@ export function Footer() {
           </div>
           <div className="flex gap-10 justify-self-end text-slate-800 dark:text-slate-200">
             <div>
-              <h4 className="text-lg font-semibold">Products</h4>
+              <h4 className="text-lg font-medium leading-7">Products</h4>
               <ul className="mt-3 space-y-3  text-slate-600 dark:text-slate-400">
                 <li>
                   <Link href="#">Blockchain</Link>{' '}
@@ -32,7 +32,7 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold">Socials</h4>
+              <h4 className="text-lg font-medium leading-7">Socials</h4>
               <ul className="mt-3 space-y-3 text-slate-600 dark:text-slate-400">
                 <li>
                   <Link href="#">Github</Link>
