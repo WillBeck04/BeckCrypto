@@ -74,8 +74,8 @@ export function Pagination({ table }: { table: Table<CryptoData[number]> }) {
               />
             </span>
           </div>
-          <RowsSelector table={table} />
         </div>
+        <RowsSelector table={table} />
       </div>
     </div>
   )

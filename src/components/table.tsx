@@ -11,10 +11,10 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { ReactNode, useCallback, useContext, useEffect, useState } from 'react'
 import { Pagination } from './pagination'
 import { fuzzyFilter, columns } from '@/utils/helpers/cryptoTable'
-import { ChevronDown, ChevronUp, StarIcon } from 'lucide-react'
+import { ChevronDown, ChevronUp, StarIcon, VenetianMask } from 'lucide-react'
 import Link from 'next/link'
 import { WatchlistContext } from '@/app/providers'
 import { TableRow } from './table-row'
@@ -68,12 +68,22 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   return (
     <>
       <div className="relative overflow-x-auto py-2 sm:rounded-lg lg:px-0">
-        <div className="my-5">
+        <div className="my-5 flex items-center">
           <DebouncedInput
             value={globalFilter ?? ''}
             onChange={(value) => setGlobalFilter(String(value))}
             placeholder="Search coins..."
           />
+          <div className="ml-auto flex items-center gap-2">
+            <LinkButton href="/watchlist">
+              <StarIcon className="h-4 w-4 fill-slate-700 text-slate-700 dark:fill-slate-300 dark:text-slate-300" />
+              Watchlist
+            </LinkButton>
+            <LinkButton href="/portfolio">
+              <VenetianMask className="h-4 w-4 text-slate-700 dark:text-slate-300" />
+              Portfolio
+            </LinkButton>
+          </div>
         </div>
         <table className="w-full text-left text-sm">
           <thead className="border-b border-slate-200 uppercase dark:border-slate-800">
@@ -132,5 +142,16 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
       <div className="h-4" />
       <Pagination table={table} />
     </>
+  )
+}
+
+function LinkButton({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="flex items-center gap-1 rounded-md bg-slate-200 px-3 py-2 text-xs font-semibold hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-800"
+    >
+      {children}
+    </Link>
   )
 }

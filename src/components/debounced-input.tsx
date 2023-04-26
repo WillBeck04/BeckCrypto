@@ -28,12 +28,6 @@ export function DebouncedInput({
 
   return (
     <div className="ml-2 w-48">
-      <label
-        htmlFor="search"
-        className="block text-sm font-medium leading-6 mb-1 text-slate-700 dark:text-slate-300"
-      >
-        Search coin
-      </label>
       <Input
         {...props}
         value={value}

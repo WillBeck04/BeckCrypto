@@ -28,7 +28,7 @@ export function TableRow({
   return (
     <tr
       key={row.id}
-      className="border-b border-slate-200 dark:border-slate-800"
+      className="border-b border-slate-200 dark:border-slate-800 hover:bg-white/5"
     >
       <td className="group relative cursor-pointer">
         <StarIcon

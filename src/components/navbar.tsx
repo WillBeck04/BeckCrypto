@@ -28,7 +28,7 @@ export function Navbar() {
 
 function MainNav() {
   return (
-    <nav className="flex w-full items-baseline justify-between border-b border-slate-200 px-4 py-8 dark:border-slate-800 lg:justify-normal lg:border-none lg:px-0">
+    <nav className="flex w-full items-baseline justify-between border-b border-slate-200 px-4 py-6 dark:border-slate-800 lg:justify-normal lg:border-none lg:px-0">
       <Link href="/">
         <h3 className="text-xl font-bold">Cryptosito</h3>
       </Link>
@@ -51,7 +51,7 @@ function MainNav() {
   )
 }
 
-function NavLink({ children, href }: { children: ReactNode; href: string }) {
+export function NavLink({ children, href }: { children: ReactNode; href: string }) {
   return (
     <Link
       href={href}
