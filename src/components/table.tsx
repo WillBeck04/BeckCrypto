@@ -11,7 +11,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import { Pagination } from './pagination'
 import { fuzzyFilter, columns } from '@/utils/helpers/cryptoTable'
 import { ChevronDown, ChevronUp, StarIcon } from 'lucide-react'
@@ -26,13 +26,19 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   const [globalFilter, setGlobalFilter] = useState('')
   const { watchlist, setWatchlist } = useContext(WatchlistContext)
 
-  const handleAddCoin = (newCoin: string) => {
-    setWatchlist([...watchlist, newCoin])
-  }
+  const handleAddCoin = useCallback(
+    (newCoin: string) => {
+      setWatchlist([...watchlist, newCoin])
+    },
+    [watchlist, setWatchlist]
+  )
 
-  const handleRemoveCoin = (coinId: string) => {
-    setWatchlist(watchlist.filter((id) => id !== coinId))
-  }
+  const handleRemoveCoin = useCallback(
+    (coinId: string) => {
+      setWatchlist(watchlist.filter((id) => id !== coinId))
+    },
+    [watchlist, setWatchlist]
+  )
 
   const table = useReactTable({
     data,
