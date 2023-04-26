@@ -1,4 +1,4 @@
-import z from "zod";
+import z from 'zod'
 
 const cryptoDetailsSchema = z.object({
   id: z.string(),
@@ -41,25 +41,20 @@ const cryptoDetailsSchema = z.object({
   description: z.object({
     en: z.string(),
   }),
-});
+})
 
-export type CryptoDetails = z.infer<typeof cryptoDetailsSchema>;
+export type CryptoDetails = z.infer<typeof cryptoDetailsSchema>
 
 export async function getCryptoDetails(id: string) {
   const res = await fetch(
-    `https://api.coingecko.com/api/v3/coins/${id}?sparkline=true`,
-    {
-      next: {
-        revalidate: 1000,
-      },
-    }
-  );
+    `https://api.coingecko.com/api/v3/coins/${id}?sparkline=true`
+  )
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error('Failed to fetch data')
   }
 
-  const data = await res.json();
+  const data = await res.json()
 
-  return cryptoDetailsSchema.parse(data);
+  return cryptoDetailsSchema.parse(data)
 }
