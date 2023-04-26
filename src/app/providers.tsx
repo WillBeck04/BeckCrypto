@@ -6,9 +6,10 @@ import { useLocalStorage } from 'usehooks-ts'
 import { SetValue } from './hooks/useLocalStorage'
 
 interface Portfolio {
-  id: string
   name: string
-  shares: number
+  quantity: number
+  price: number
+  cost: number
 }
 
 export const WatchlistContext = createContext<{

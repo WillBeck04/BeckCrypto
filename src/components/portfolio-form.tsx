@@ -2,7 +2,8 @@
 import { CryptoData } from '@/utils/getCryptoData'
 import { Input } from './ui/input'
 import { formatter } from '@/utils/formatter'
-import { FormEvent, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
+import { PortfolioContext } from '@/app/providers'
 
 export function PortfolioForm({
   selectedCoin,
@@ -10,10 +11,19 @@ export function PortfolioForm({
   selectedCoin: CryptoData[number]
 }) {
   const [quantity, setQuantity] = useState(0)
+  const { setPortfolio } = useContext(PortfolioContext)
 
   function handleAddTransaction(e: FormEvent) {
-    e.preventDefault();
-    console.log('yay buyed')
+    e.preventDefault()
+    setPortfolio((prev) => [
+      ...prev,
+      {
+        name: selectedCoin.name,
+        price: selectedCoin.current_price,
+        quantity: quantity,
+        cost: quantity * selectedCoin.current_price,
+      },
+    ])
   }
 
   return (
