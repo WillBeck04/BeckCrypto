@@ -21,6 +21,8 @@ export function TableRow({
   useEffect(() => {
     if (watchlist.includes(row.original.id)) {
       setIsWatchlisted(true)
+    } else {
+      setIsWatchlisted(false)
     }
   }, [watchlist, row.original.id])
   return (

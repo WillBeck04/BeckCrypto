@@ -7,13 +7,6 @@ body {
 }
 
 @layer components {
-  td:nth-child(3) {
-    @apply sticky left-0 bg-slate-100 dark:bg-slate-900 lg:bg-inherit;
-  }
-  th:nth-child(3) {
-    @apply sticky left-0 bg-slate-100 dark:bg-slate-900 lg:bg-inherit;
-  }
-
   td:nth-child(4) {
     @apply text-right;
   }
