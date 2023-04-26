@@ -15,27 +15,24 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
             quality={100}
           ></Image>
           <h3 className="text-3xl font-bold">{coinData.name}</h3>
-          <button
-            disabled
+          <div
+          
             className="w-16 rounded bg-gray-200 px-3 py-2 text-xs font-semibold text-gray-800 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-50 dark:hover:bg-gray-700"
           >
             {coinData.symbol.toUpperCase()}
-          </button>
+          </div>
         </div>
         <div className="mt-5 flex gap-3">
-          <button
-            disabled
-            className="rounded bg-gray-400 px-3 py-1 text-xs font-semibold text-gray-50 dark:bg-gray-600"
-          >
+          <div className="rounded bg-gray-400 px-3 py-1 text-xs font-semibold text-gray-50 dark:bg-gray-600">
             {coinData.market_cap_rank
               ? `Rank #${coinData.market_cap_rank}`
               : 'Unranked'}
-          </button>
-          <button className="rounded bg-gray-200 px-3 py-1 text-xs font-semibold hover:bg-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600">
+          </div>
+          <div className="rounded bg-gray-200 px-3 py-1 text-xs font-semibold hover:bg-gray-400 dark:bg-gray-800 dark:hover:bg-gray-600">
             <a href={coinData.links.homepage[0]} target={`_blank`}>
               {coinData.links.homepage[0]}
             </a>
-          </button>
+          </div>
         </div>
       </div>
       <div className="mt-5 lg:w-1/2">
@@ -47,8 +44,7 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
             {coinData.market_data?.current_price.usd &&
               formatter.format(coinData.market_data.current_price.usd)}
           </p>
-          <button
-            disabled
+          <div
             className={
               coinData.market_data?.price_change_percentage_24h &&
               coinData.market_data?.price_change_percentage_24h > 0
@@ -61,7 +57,7 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
                 coinData.market_data.price_change_percentage_24h * 100
               ) / 100}
             %
-          </button>
+          </div>
         </div>
         <div className="mt-5 rounded-lg p-3 shadow-sm dark:shadow-gray-700">
           Market Cap:{' '}

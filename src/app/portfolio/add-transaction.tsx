@@ -1,5 +1,6 @@
 'use client'
 import { PortfolioForm } from '@/components/portfolio-form'
+import { Button } from '@/components/ui/button'
 import { CryptoData } from '@/utils/getCryptoData'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
@@ -19,13 +20,9 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
   return (
     <>
       <div>
-        <button
-          type="button"
-          onClick={openModal}
-          className="rounded-md bg-indigo-600 px-4 py-2 text-sm text-slate-100 hover:bg-indigo-500"
-        >
+        <Button onClick={openModal} size="sm">
           Add Transaction
-        </button>
+        </Button>
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -61,7 +58,7 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
                     Select coin
                   </Dialog.Title>
                   <div className="mt-2">
-                    <SelectCoin cryptos={cryptos} />
+                    <SelectCoin cryptos={cryptos} closeModal={closeModal} />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -73,39 +70,53 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
   )
 }
 
-function SelectCoin({ cryptos }: { cryptos: CryptoData }) {
-  const [selectedCoin, setSelectedCoin] = useState<CryptoData[number]>(
-    cryptos[0]
+function SelectCoin({
+  cryptos,
+  closeModal,
+}: {
+  cryptos: CryptoData
+  closeModal: () => void
+}) {
+  const [selectedCoin, setSelectedCoin] = useState<CryptoData[number] | null>(
+    null
   )
   const [isPicked, setIsPicked] = useState(false)
   const [query, setQuery] = useState('')
 
   const filteredCryptos =
     query === ''
-      ? cryptos.slice(0, 20)
+      ? cryptos.slice(0, 10)
       : cryptos.filter((crypto) => {
           return crypto.name.toLowerCase().includes(query.toLowerCase())
         })
 
-  if (isPicked) {
-    return <PortfolioForm selectedCoin={selectedCoin} />
+  if (selectedCoin) {
+    return <PortfolioForm selectedCoin={selectedCoin} closeModal={closeModal} />
   }
 
   return (
     <Combobox value={selectedCoin} onChange={setSelectedCoin}>
       <Combobox.Input
         onChange={(event) => setQuery(event.target.value)}
-        displayValue={(crypto: CryptoData[number]) => crypto.name}
+        placeholder="Type a coin"
+        displayValue={(crypto: CryptoData[number]) =>
+          selectedCoin ? crypto.name : ''
+        }
         className="block w-full rounded-md border-0 px-3 py-1 text-slate-900 outline-none ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-slate-700 dark:text-slate-100 dark:ring-slate-700 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6"
       />
       <Combobox.Options className="mt-5">
-        {filteredCryptos.slice(0, 20).map((crypto) => (
+        {filteredCryptos.slice(0, 10).map((crypto) => (
           <Combobox.Option
             key={crypto.id}
             value={crypto}
             onClick={() => setIsPicked(true)}
+            className={({ active }) =>
+              `relative cursor-pointer select-none rounded-md py-2 pl-10 pr-4 ${
+                active ? 'bg-indigo-600/20 text-white' : null
+              }`
+            }
           >
-            <div className="mt-2 flex items-center gap-1 text-sm">
+            <div className="mt-2 flex items-center gap-2  text-sm">
               <Image src={crypto.image} alt="coin-img" width={16} height={16} />
               <p>{crypto.name}</p>
             </div>

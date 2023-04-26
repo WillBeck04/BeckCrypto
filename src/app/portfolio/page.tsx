@@ -8,8 +8,10 @@ export default async function PortfolioPage() {
 
   return (
     <div className="min-h-[800px] py-12">
-      <PortfolioList />
-      <AddTransaction cryptos={cryptos} />
+      <div className="flex justify-between">
+        <PortfolioList />
+        <AddTransaction cryptos={cryptos} />
+      </div>
     </div>
   )
 }

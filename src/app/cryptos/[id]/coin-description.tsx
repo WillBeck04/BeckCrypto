@@ -1,5 +1,6 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
 export function CoinDescription({
@@ -32,14 +33,14 @@ export function CoinDescription({
         ></p>
       )}
       {description.en.length > 290 && (
-        <button
+        <Button
           className="mt-3 flex h-10 w-full items-center justify-center self-center rounded-lg bg-gray-500/20 text-sm font-bold text-gray-200 md:w-36"
           onClick={() => setShowMore((prev) => !prev)}
         >
           <p className="text-gray-600 dark:text-gray-200">
             {showMore ? 'Show less' : 'Show more'}
           </p>
-        </button>
+        </Button>
       )}
     </article>
   )
