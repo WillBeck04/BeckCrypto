@@ -4,6 +4,7 @@ import { CoinInfo } from './coin-info'
 import { CoinDescription } from './coin-description'
 import { Container } from '@/components/ui/container'
 import { CoinChart } from './coin-chart'
+import { getCryptoChart } from '@/utils/getCryptoChart'
 
 export default async function CryptoPage({
   params,
@@ -11,6 +12,7 @@ export default async function CryptoPage({
   params: { id: string }
 }) {
   const coinDetails = await getCryptoDetails(params.id)
+  const coinChartData = await getCryptoChart(params.id)
   return (
     <div>
       <Container>
@@ -22,7 +24,7 @@ export default async function CryptoPage({
                 <h3 className="my-10 text-2xl font-bold">
                   {coinDetails.name} price chart
                 </h3>
-                <CoinChart marketData={coinDetails.market_data} />
+                <CoinChart marketData={coinChartData} />
               </div>
             ) : null}
             <CoinDescription

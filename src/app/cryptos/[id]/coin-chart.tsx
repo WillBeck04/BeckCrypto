@@ -1,20 +1,38 @@
 'use client'
+import { Card, Title, AreaChart } from '@tremor/react'
+import { ChartData } from '@/utils/getCryptoChart'
+import { useMemo } from 'react'
 
-import { CryptoDetails } from '@/utils/getCryptoDetails'
-import { Sparklines, SparklinesLine } from 'react-sparklines'
+const dataFormatter = (number: number) => {
+  return '$ ' + Intl.NumberFormat('us').format(number).toString()
+}
 
-export function CoinChart({
-  marketData,
-}: {
-  marketData: CryptoDetails['market_data']
-}) {
+export function CoinChart({ marketData }: { marketData: ChartData }) {
+  const chartData = useMemo(() => {
+    return marketData.prices.map((price) => {
+      const date = new Date(price[0])
+      const formattedDate = `${date.toLocaleString('default', {
+        month: 'short',
+      })} ${date.getDate()}`
+      const formattedPrice = Math.round(price[1])
+      return { date: formattedDate, price: formattedPrice }
+    })
+  }, [marketData.prices])
+
+  console.log(chartData)
   return (
     <div className="w-full lg:w-2/3">
-      <Sparklines data={marketData?.sparkline_7d.price}>
-        <SparklinesLine
-          color={marketData?.price_change_percentage_24h! > 0 ? 'teal' : 'red'}
+      <Card>
+        <Title>Coin chart over time (USD)</Title>
+        <AreaChart
+          className="mt-4 h-72"
+          data={chartData}
+          index="date"
+          categories={['Coin Price']}
+          colors={['indigo']}
+          valueFormatter={dataFormatter}
         />
-      </Sparklines>
+      </Card>
     </div>
   )
 }
