@@ -20,8 +20,8 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
   return (
     <>
       <div>
-        <Button onClick={openModal} size="sm">
-          Add Transaction
+        <Button onClick={openModal} size="sm" className='text-sm'>
+          New Transaction
         </Button>
       </div>
 

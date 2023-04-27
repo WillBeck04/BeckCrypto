@@ -3,16 +3,17 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "assets.coingecko.com",
-        port: "",
-        pathname: "**",
+        protocol: 'https',
+        hostname: 'assets.coingecko.com',
+        port: '',
+        pathname: '**',
       },
     ],
   },
   experimental: {
     appDir: true,
+    serverComponentsExternalPackages: ['@tremor/react'],
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
