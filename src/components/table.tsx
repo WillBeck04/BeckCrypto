@@ -68,13 +68,13 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   return (
     <>
       <div className="relative overflow-x-auto py-2 sm:rounded-lg lg:px-0">
-        <div className="my-5 flex items-center">
+        <div className="my-5 flex flex-col gap-5 lg:flex-row lg:justify-between">
           <DebouncedInput
             value={globalFilter ?? ''}
             onChange={(value) => setGlobalFilter(String(value))}
             placeholder="Search coins..."
           />
-          <div className="ml-auto flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <LinkButton href="/watchlist">
               <StarIcon className="h-4 w-4 fill-slate-700 text-slate-700 dark:fill-slate-300 dark:text-slate-300" />
               Watchlist
@@ -149,7 +149,7 @@ function LinkButton({ href, children }: { href: string; children: ReactNode }) {
   return (
     <Link
       href={href}
-      className="flex items-center gap-1 rounded-md bg-slate-200 px-3 py-2 text-xs font-semibold hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-800"
+      className="flex items-center gap-1 rounded-md bg-slate-200 px-2 py-2 text-xs font-semibold hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-800"
     >
       {children}
     </Link>

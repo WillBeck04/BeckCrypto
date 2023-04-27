@@ -27,7 +27,7 @@ export function DebouncedInput({
   }, [value])
 
   return (
-    <div className="ml-2 w-48">
+    <div className="w-48">
       <Input
         {...props}
         value={value}
