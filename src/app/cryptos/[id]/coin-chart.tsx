@@ -19,16 +19,14 @@ export function CoinChart({ marketData }: { marketData: ChartData }) {
     })
   }, [marketData.prices])
 
-  console.log(chartData)
   return (
     <div className="w-full lg:w-2/3">
-      <Card>
-        <Title>Coin chart over time (USD)</Title>
+      <Card className="ring-none border border-indigo-500/10 bg-transparent">
         <AreaChart
           className="mt-4 h-72"
           data={chartData}
           index="date"
-          categories={['Coin Price']}
+          categories={['price']}
           colors={['indigo']}
           valueFormatter={dataFormatter}
         />
