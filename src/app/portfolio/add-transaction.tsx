@@ -9,6 +9,7 @@ import { X } from 'lucide-react'
 
 export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [transaction, setTransaction] = useState<'buy' | 'sell'>('buy')
 
   function closeModal() {
     setIsOpen(false)
@@ -52,7 +53,7 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-800">
-                  <div className="py-3 flex w-full items-center justify-between">
+                  <div className="flex w-full items-center justify-between py-3">
                     <Dialog.Title
                       as="h3"
                       className="text-xl font-medium leading-6 text-slate-900 dark:text-slate-100"
@@ -71,9 +72,29 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
                       />
                     </button>
                   </div>
+                  <div className="my-3 flex w-full gap-3">
+                    <Button
+                      className="flex-1"
+                      variant={transaction === 'buy' ? 'default' : 'ghost'}
+                      onClick={() => setTransaction('buy')}
+                    >
+                      Buy
+                    </Button>
+                    <Button
+                      className="flex-1"
+                      variant={transaction === 'sell' ? 'default' : 'ghost'}
+                      onClick={() => setTransaction('sell')}
+                    >
+                      Sell
+                    </Button>
+                  </div>
 
                   <div className="mt-2">
-                    <SelectCoin cryptos={cryptos} closeModal={closeModal} />
+                    <SelectCoin
+                      cryptos={cryptos}
+                      closeModal={closeModal}
+                      transaction={transaction}
+                    />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
@@ -88,9 +109,11 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
 function SelectCoin({
   cryptos,
   closeModal,
+  transaction,
 }: {
   cryptos: CryptoData
   closeModal: () => void
+  transaction: 'buy' | 'sell'
 }) {
   const [selectedCoin, setSelectedCoin] = useState<CryptoData[number] | null>(
     null
@@ -133,7 +156,7 @@ function SelectCoin({
         ))}
       </Combobox.Options>
       {selectedCoin ? (
-        <TransactionForm selectedCoin={selectedCoin} closeModal={closeModal} />
+        <TransactionForm selectedCoin={selectedCoin} closeModal={closeModal} transaction={transaction} />
       ) : null}
     </Combobox>
   )

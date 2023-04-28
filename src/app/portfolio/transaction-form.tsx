@@ -2,16 +2,18 @@
 import { CryptoData } from '@/utils/getCryptoData'
 import { Input } from '../../components/ui/input'
 import { formatter } from '@/utils/formatter'
-import { FormEvent, useContext, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { Button } from '../../components/ui/button'
-import { usePortfolio, usePortfolioDispatch } from '../portfolio-provider'
+import { usePortfolioDispatch } from '../portfolio-provider'
 
 export function TransactionForm({
   selectedCoin,
   closeModal,
+  transaction,
 }: {
   selectedCoin: CryptoData[number]
   closeModal: () => void
+  transaction: 'buy' | 'sell'
 }) {
   const [quantity, setQuantity] = useState(0)
   const dispatch = usePortfolioDispatch()
@@ -22,9 +24,12 @@ export function TransactionForm({
       type: 'added',
       transaction: {
         name: selectedCoin.name,
-        quantity: quantity,
+        quantity: transaction === 'buy' ? quantity : -quantity,
         price: selectedCoin.current_price,
-        cost: quantity * selectedCoin.current_price,
+        cost:
+          transaction === 'buy'
+            ? quantity * selectedCoin.current_price
+            : -quantity * selectedCoin.current_price,
       },
     })
     closeModal()
