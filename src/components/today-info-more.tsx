@@ -25,7 +25,7 @@ export default function TodaInfoMore({
           <span className="font-semibold">
             {moneyFormat(globalData.total_volume.usd)}
           </span>
-          Bitcoin’s dominance is currently{' '}
+          . Bitcoin’s dominance is currently{' '}
           <span className="font-semibold">
             {globalData.market_cap_percentage.btc.toFixed(2)}%
           </span>
