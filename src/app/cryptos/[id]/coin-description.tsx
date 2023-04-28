@@ -32,7 +32,7 @@ export function CoinDescription({
           className="line-clamp-4 [text-wrap:balance]"
         ></p>
       )}
-      {description.en.length > 250 && (
+      {description.en.length > 270 && (
         <Button
           onClick={() => setShowMore((prev) => !prev)}
           className="mt-1"
