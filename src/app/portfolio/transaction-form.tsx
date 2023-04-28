@@ -13,7 +13,7 @@ export function TransactionForm({
   selectedCoin: CryptoData[number]
   closeModal: () => void
 }) {
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(0)
   const dispatch = usePortfolioDispatch()
 
   function handleAddTransaction(e: FormEvent) {
@@ -31,22 +31,22 @@ export function TransactionForm({
   }
 
   return (
-    <form className="mt-3 space-y-4" onSubmit={handleAddTransaction}>
-      <fieldset className="space-y-2">
-        <label className="text-sm">Current Price</label>
+    <form className="mt-4 space-y-4" onSubmit={handleAddTransaction}>
+      <fieldset className="space-y-1">
+        <label className="text-sm font-semibold uppercase">Current Price</label>
         <Input
           value={`$${formatter.format(selectedCoin.current_price)}`}
           disabled={true}
         />
       </fieldset>
-      <fieldset className="space-y-2">
-        <label className="text-sm">Quantity</label>
+      <fieldset className="space-y-1">
+        <label className="text-sm font-semibold uppercase">Quantity</label>
         <Input
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
           type="number"
-          min={0.1}
-          step={0.1}
+          min="0.1"
+          placeholder="0.00"
           className="dark:bg-slate-700"
         />
       </fieldset>

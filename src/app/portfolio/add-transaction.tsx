@@ -5,6 +5,7 @@ import { Combobox, Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
 import { Fragment, useState } from 'react'
 import { TransactionForm } from './transaction-form'
+import { X } from 'lucide-react'
 
 export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -51,12 +52,26 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-slate-800">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-slate-900 dark:text-slate-100"
-                  >
-                    Select coin
-                  </Dialog.Title>
+                  <div className="py-3 flex w-full items-center justify-between">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-xl font-medium leading-6 text-slate-900 dark:text-slate-100"
+                    >
+                      Select coin
+                    </Dialog.Title>
+                    <button
+                      type="button"
+                      className="-mt-3 rounded-md border border-slate-300 bg-slate-200 p-1.5 text-slate-700 hover:border-slate-400 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200  dark:hover:border-slate-500"
+                      onClick={closeModal}
+                    >
+                      <span className="sr-only">Close menu</span>
+                      <X
+                        className="h-6 w-6 text-slate-600 group-hover:text-slate-700 dark:text-slate-500 dark:group-hover:text-slate-400"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
+
                   <div className="mt-2">
                     <SelectCoin cryptos={cryptos} closeModal={closeModal} />
                   </div>
