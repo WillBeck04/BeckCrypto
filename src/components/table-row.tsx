@@ -7,13 +7,9 @@ import WatchlistStar from './watchlist-star'
 
 export function TableRow({
   row,
-  handleRemoveCoin,
-  handleAddCoin,
   watchlist,
 }: {
   row: Row<CryptoData[number]>
-  handleRemoveCoin: (id: string) => void
-  handleAddCoin: (id: string) => void
   watchlist: string[]
 }) {
   const [isWatchlisted, setIsWatchlisted] = useState(false)

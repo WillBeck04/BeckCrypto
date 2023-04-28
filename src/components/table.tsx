@@ -1,80 +1,26 @@
 'use client'
 
 import { CryptoData } from '@/utils/getCryptoData'
-import {
-  Row,
-  SortingState,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table'
-import { ReactNode, useCallback, useContext, useEffect, useState } from 'react'
+
+import { ReactNode } from 'react'
 import { Pagination } from './pagination'
-import { fuzzyFilter, columns } from '@/utils/helpers/cryptoTable'
+
 import { ChevronDown, ChevronUp, StarIcon, VenetianMask } from 'lucide-react'
 import Link from 'next/link'
 import { TableRow } from './table-row'
 import { DebouncedInput } from './debounced-input'
 import { useWatchlist, useWatchlistDispatch } from '@/app/watchlist-provider'
+import { useTable } from '@/hooks/useTable'
+import { flexRender } from '@tanstack/react-table'
 
 export function Table({ cryptoData }: { cryptoData: CryptoData }) {
-  const [data, setData] = useState(() => [...cryptoData])
-  const [sorting, setSorting] = useState<SortingState>([])
-  const [globalFilter, setGlobalFilter] = useState('')
   const watchlist = useWatchlist()
-  const dispatch = useWatchlistDispatch()
 
-  const handleAddCoin = useCallback(
-    (newCoin: string) => {
-      dispatch({
-        type: 'added',
-        coin: newCoin,
-      })
-    },
-    [dispatch]
-  )
-
-  const handleRemoveCoin = useCallback(
-    (coinId: string) => {
-      dispatch({
-        type: 'removed',
-        id: coinId,
-      })
-    },
-    [dispatch]
-  )
-
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-    filterFns: {
-      fuzzy: fuzzyFilter,
-    },
-    state: {
-      sorting,
-      globalFilter,
-    },
-    onSortingChange: setSorting,
-    onGlobalFilterChange: setGlobalFilter,
-    globalFilterFn: fuzzyFilter,
-    getFilteredRowModel: getFilteredRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    debugTable: true,
-    initialState: {
-      pagination: {
-        pageSize: 20,
-      },
-    },
-  })
+  const { table, globalFilter, setGlobalFilter } = useTable(cryptoData)
 
   return (
     <>
-      <div className="relative overflow-x-auto py-2 sm:rounded-lg lg:px-0 mt-6">
+      <div className="relative mt-6 overflow-x-auto py-2 sm:rounded-lg lg:px-0">
         <div className="my-5 flex flex-col gap-5 lg:flex-row lg:justify-between">
           <DebouncedInput
             value={globalFilter ?? ''}
@@ -135,13 +81,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                row={row}
-                handleAddCoin={handleAddCoin}
-                handleRemoveCoin={handleRemoveCoin}
-                watchlist={watchlist}
-              />
+              <TableRow key={row.id} row={row} watchlist={watchlist} />
             ))}
           </tbody>
         </table>
