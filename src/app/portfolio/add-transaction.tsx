@@ -20,7 +20,7 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
   }
 
   return (
-    <>
+    <div className="mt-6">
       <div>
         <Button onClick={openModal} size="sm" className="text-sm">
           New Transaction
@@ -89,7 +89,7 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
                     </Button>
                   </div>
 
-                  <div className="mt-2">
+                  <div className="mt-4">
                     <SelectCoin
                       cryptos={cryptos}
                       closeModal={closeModal}
@@ -102,7 +102,7 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
           </div>
         </Dialog>
       </Transition>
-    </>
+    </div>
   )
 }
 
@@ -149,7 +149,7 @@ function SelectCoin({
             }
           >
             <div className="mt-2 flex items-center gap-2 text-sm font-semibold">
-              <Image src={crypto.image} alt="coin-img" width={16} height={16} />
+              <Image src={crypto.image} alt="coin-img" width={24} height={24} />
               <p>{crypto.name}</p>
             </div>
           </Combobox.Option>

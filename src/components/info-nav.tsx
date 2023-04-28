@@ -1,4 +1,4 @@
-import { formatter } from '@/utils/formatter'
+import { moneyFormat } from '@/utils/formatter'
 import { getGlobalCryptoData } from '@/utils/getGlobalData'
 
 export async function InfoNav() {
@@ -20,13 +20,13 @@ export async function InfoNav() {
       <li className="inline-flex gap-1">
         <p>Market Cap:</p>
         <span className="text-indigo-500 dark:text-indigo-400">
-          ${formatter.format(globalData.total_market_cap.usd)}
+          {moneyFormat(globalData.total_market_cap.usd)}
         </span>
       </li>
       <li className="inline-flex gap-1">
         <p>Volume: </p>
         <span className="text-indigo-500 dark:text-indigo-400">
-          ${formatter.format(globalData.total_volume.usd)}
+          {moneyFormat(globalData.total_volume.usd)}
         </span>
       </li>
       <li className="inline-flex gap-1">

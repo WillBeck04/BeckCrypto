@@ -74,7 +74,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
 
   return (
     <>
-      <div className="relative overflow-x-auto py-2 sm:rounded-lg lg:px-0">
+      <div className="relative overflow-x-auto py-2 sm:rounded-lg lg:px-0 mt-6">
         <div className="my-5 flex flex-col gap-5 lg:flex-row lg:justify-between">
           <DebouncedInput
             value={globalFilter ?? ''}

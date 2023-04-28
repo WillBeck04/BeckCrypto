@@ -7,8 +7,8 @@ import { FilterFn } from '@tanstack/table-core'
 import { SortingFn, createColumnHelper, sortingFns } from '@tanstack/table-core'
 import Image from 'next/image'
 import { Sparklines, SparklinesLine } from 'react-sparklines'
-import { formatter } from '../formatter'
 import { CryptoData } from '../getCryptoData'
+import { moneyFormat } from '../formatter'
 
 declare module '@tanstack/table-core' {
   interface FilterFns {
@@ -76,7 +76,7 @@ export const columns = [
     ),
   }),
   columnHelper.accessor('current_price', {
-    cell: (info) => `$${formatter.format(info.getValue())}`,
+    cell: (info) => moneyFormat(info.getValue()),
     header: 'Price',
   }),
 
@@ -89,15 +89,15 @@ export const columns = [
     header: '24h %',
   }),
   columnHelper.accessor('market_cap', {
-    cell: (info) => `$${formatter.format(info.getValue())}`,
+    cell: (info) => moneyFormat(info.getValue()),
     header: 'Market Cap',
   }),
   columnHelper.accessor('total_volume', {
-    cell: (info) => `$${formatter.format(info.getValue())}`,
+    cell: (info) => moneyFormat(info.getValue()),
     header: 'Total Volume',
   }),
   columnHelper.accessor('circulating_supply', {
-    cell: (info) => `$${formatter.format(info.getValue())}`,
+    cell: (info) => moneyFormat(info.getValue()),
     header: 'Circulating supply',
   }),
   columnHelper.accessor('sparkline_in_7d', {

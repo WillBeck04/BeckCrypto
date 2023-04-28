@@ -1,10 +1,10 @@
 'use client'
 import { CryptoData } from '@/utils/getCryptoData'
 import { Input } from '../../components/ui/input'
-import { formatter } from '@/utils/formatter'
 import { FormEvent, useState } from 'react'
 import { Button } from '../../components/ui/button'
 import { usePortfolioDispatch } from '../portfolio-provider'
+import { moneyFormat } from '@/utils/formatter'
 
 export function TransactionForm({
   selectedCoin,
@@ -38,19 +38,23 @@ export function TransactionForm({
   return (
     <form className="mt-4 space-y-4" onSubmit={handleAddTransaction}>
       <fieldset className="space-y-1">
-        <label className="text-sm font-semibold uppercase">Current Price</label>
+        <label className="text-sm text-slate-700 dark:text-slate-300">
+          Current Price
+        </label>
         <Input
-          value={`$${formatter.format(selectedCoin.current_price)}`}
+          value={moneyFormat(selectedCoin.current_price)}
           disabled={true}
         />
       </fieldset>
       <fieldset className="space-y-1">
-        <label className="text-sm font-semibold uppercase">Quantity</label>
+        <label className="text-sm text-slate-700 dark:text-slate-300">
+          Quantity
+        </label>
         <Input
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
           type="number"
-          min="0"
+          min="0.01"
           step="any"
           placeholder="0.00"
           className="dark:bg-slate-700"
@@ -58,7 +62,7 @@ export function TransactionForm({
       </fieldset>
       <div className="mt-3">
         <h3 className="text-lg font-semibold">Total Cost</h3>
-        <p>${formatter.format(quantity * selectedCoin.current_price)}</p>
+        <p>{moneyFormat(quantity * selectedCoin.current_price)}</p>
       </div>
       <Button type="submit">Buy Coin</Button>
     </form>

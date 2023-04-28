@@ -1,4 +1,4 @@
-import { formatter } from '@/utils/formatter'
+import { moneyFormat } from '@/utils/formatter'
 import { CryptoDetails } from '@/utils/getCryptoDetails'
 import Image from 'next/image'
 import { ReactNode } from 'react'
@@ -39,9 +39,8 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
         </p>
         <div className="flex items-center gap-3 align-middle">
           <p className="text-3xl font-bold antialiased">
-            $
             {coinData.market_data?.current_price.usd &&
-              formatter.format(coinData.market_data.current_price.usd)}
+              moneyFormat(coinData.market_data.current_price.usd)}
           </p>
           <div
             className={
@@ -61,29 +60,24 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
         <MarketCard>
           Market Cap:{' '}
           <span className="text-xl font-bold">
-            $
             {coinData.market_data?.market_cap.usd
-              ? formatter.format(coinData.market_data.market_cap.usd)
+              ? moneyFormat(coinData.market_data.market_cap.usd)
               : 'No data'}
           </span>
         </MarketCard>
         <MarketCard>
           Fully Diluted Market Cap:{' '}
           <span className="text-xl font-bold">
-            $
             {coinData.market_data?.fully_diluted_valuation.usd
-              ? formatter.format(
-                  coinData.market_data.fully_diluted_valuation.usd
-                )
+              ? moneyFormat(coinData.market_data.fully_diluted_valuation.usd)
               : 'No data'}
           </span>
         </MarketCard>
         <MarketCard>
           Volume 24h:{' '}
           <span className="text-xl font-bold">
-            $
             {coinData.market_data?.high_24h.usd
-              ? formatter.format(coinData.market_data.high_24h.usd)
+              ? moneyFormat(coinData.market_data.high_24h.usd)
               : 'No data'}
           </span>
         </MarketCard>
@@ -91,9 +85,8 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
           {' '}
           Circulating supply:{' '}
           <span className="text-xl font-bold">
-            $
             {coinData.market_data?.circulating_supply
-              ? formatter.format(coinData.market_data.circulating_supply)
+              ? moneyFormat(coinData.market_data.circulating_supply)
               : 'No data'}
           </span>
         </MarketCard>
