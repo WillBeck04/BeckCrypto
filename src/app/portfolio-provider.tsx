@@ -10,7 +10,7 @@ import {
 } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 
-interface Transaction {
+export interface Transaction {
   name: string
   price: number
   quantity: number

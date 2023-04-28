@@ -14,6 +14,7 @@ import {
 } from '@tremor/react'
 import { usePortfolio } from '../portfolio-provider'
 import { cn } from '@/utils/cn'
+import { Allocation } from './allocation'
 
 export function PortfolioTable() {
   const portfolio = usePortfolio()
@@ -26,18 +27,22 @@ export function PortfolioTable() {
   }, [portfolio])
   return (
     <div>
-      <div className="mb-6">
-        <h2 className="text-2xl font-medium lg:text-3xl">Total Balance</h2>
-        <p
-          className={cn(
-            'mt-1 text-xl lg:text-2xl',
-            totalBalance > 0 ? 'text-green-500' : 'text-red-500'
-          )}
-        >
-          ${formatter.format(totalBalance)}
-        </p>
+      <div className="mb-6 flex flex-col justify-between lg:flex-row">
+        <div className="flex-1">
+          <h2 className="text-2xl font-medium lg:text-3xl">Total Balance</h2>
+          <p
+            className={cn(
+              'mt-1 text-xl lg:text-2xl',
+              totalBalance > 0 ? 'text-green-500' : 'text-red-500'
+            )}
+          >
+            ${formatter.format(totalBalance)}
+          </p>
+        </div>
+
+        <Allocation portfolio={portfolio} />
       </div>
-      <Card className="ring-transparent dark:border-slate-700 dark:bg-slate-800">
+      <Card className="mt-6 ring-transparent dark:border-slate-700 dark:bg-slate-800">
         <Title className="text-slate-800 dark:text-slate-200">
           Transactions
         </Title>

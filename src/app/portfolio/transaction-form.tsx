@@ -50,7 +50,8 @@ export function TransactionForm({
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
           type="number"
-          min="0.1"
+          min="0"
+          step="any"
           placeholder="0.00"
           className="dark:bg-slate-700"
         />
