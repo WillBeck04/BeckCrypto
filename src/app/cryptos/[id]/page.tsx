@@ -15,7 +15,6 @@ export default async function CryptoPage({
   const coinChartData = await getCryptoChart(params.id)
   return (
     <div>
-      <Container>
         <div className="flex grid-cols-8 flex-col lg:grid lg:gap-10">
           <section className="col-span-6">
             <CoinInfo coinData={coinDetails} />
@@ -33,7 +32,6 @@ export default async function CryptoPage({
             <TrendingCoins />
           </div>
         </div>
-      </Container>
     </div>
   )
 }
