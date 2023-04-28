@@ -14,13 +14,11 @@ const valueFormatter = (number: number) =>
 export function Allocation({ portfolio }: { portfolio: Transaction[] }) {
   const result = useMemo(() => {
     return portfolio.reduce((acc: Allocation[], curr) => {
-      const existing = acc.find(
-        (item) => item.name === curr.name && item.cost > 0
-      )
+      const existing = acc.find((item) => item.name === curr.name)
       if (existing) {
         existing.cost += curr.cost
       } else {
-        acc.push({ name: curr.name, cost: Math.ceil(curr.cost) })
+        acc.push({ name: curr.name, cost: curr.cost })
       }
       return acc
     }, [])
@@ -37,7 +35,7 @@ export function Allocation({ portfolio }: { portfolio: Transaction[] }) {
         category="cost"
         index="name"
         valueFormatter={valueFormatter}
-        colors={['slate', 'indigo']}
+        colors={['slate', 'violet', 'indigo', 'rose', 'cyan', 'amber']}
       />
     </div>
   )
