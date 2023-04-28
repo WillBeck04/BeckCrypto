@@ -1,19 +1,19 @@
 'use client'
 import { CryptoData } from '@/utils/getCryptoData'
-import { Input } from './ui/input'
+import { Input } from '../../components/ui/input'
 import { formatter } from '@/utils/formatter'
 import { FormEvent, useContext, useState } from 'react'
 import { PortfolioContext } from '@/app/providers'
-import { Button } from './ui/button'
+import { Button } from '../../components/ui/button'
 
-export function PortfolioForm({
+export function TransactionForm({
   selectedCoin,
   closeModal,
 }: {
   selectedCoin: CryptoData[number]
   closeModal: () => void
 }) {
-  const [quantity, setQuantity] = useState(0)
+  const [quantity, setQuantity] = useState(1)
   const { setPortfolio } = useContext(PortfolioContext)
 
   function handleAddTransaction(e: FormEvent) {
@@ -31,11 +31,7 @@ export function PortfolioForm({
   }
 
   return (
-    <form className="space-y-4" onSubmit={handleAddTransaction}>
-      <fieldset className="space-y-2">
-        <label className="text-sm">Name</label>
-        <Input value={selectedCoin.name} disabled={true} />
-      </fieldset>
+    <form className="space-y-4 mt-3" onSubmit={handleAddTransaction}>
       <fieldset className="space-y-2">
         <label className="text-sm">Current Price</label>
         <Input

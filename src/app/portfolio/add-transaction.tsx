@@ -1,10 +1,10 @@
 'use client'
-import { PortfolioForm } from '@/components/portfolio-form'
 import { Button } from '@/components/ui/button'
 import { CryptoData } from '@/utils/getCryptoData'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
 import { Fragment, useState } from 'react'
+import { TransactionForm } from './transaction-form'
 
 export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,7 +20,7 @@ export function AddTransaction({ cryptos }: { cryptos: CryptoData }) {
   return (
     <>
       <div>
-        <Button onClick={openModal} size="sm" className='text-sm'>
+        <Button onClick={openModal} size="sm" className="text-sm">
           New Transaction
         </Button>
       </div>
@@ -80,7 +80,6 @@ function SelectCoin({
   const [selectedCoin, setSelectedCoin] = useState<CryptoData[number] | null>(
     null
   )
-  const [isPicked, setIsPicked] = useState(false)
   const [query, setQuery] = useState('')
 
   const filteredCryptos =
@@ -89,10 +88,6 @@ function SelectCoin({
       : cryptos.filter((crypto) => {
           return crypto.name.toLowerCase().includes(query.toLowerCase())
         })
-
-  if (selectedCoin) {
-    return <PortfolioForm selectedCoin={selectedCoin} closeModal={closeModal} />
-  }
 
   return (
     <Combobox value={selectedCoin} onChange={setSelectedCoin}>
@@ -109,20 +104,22 @@ function SelectCoin({
           <Combobox.Option
             key={crypto.id}
             value={crypto}
-            onClick={() => setIsPicked(true)}
             className={({ active }) =>
               `relative cursor-pointer select-none rounded-md py-2 pl-10 pr-4 ${
-                active ? 'bg-indigo-600/20 text-white' : null
+                active ? 'bg-indigo-500 text-white' : null
               }`
             }
           >
-            <div className="mt-2 flex items-center gap-2  text-sm">
+            <div className="mt-2 flex items-center gap-2 text-sm font-semibold">
               <Image src={crypto.image} alt="coin-img" width={16} height={16} />
               <p>{crypto.name}</p>
             </div>
           </Combobox.Option>
         ))}
       </Combobox.Options>
+      {selectedCoin ? (
+        <TransactionForm selectedCoin={selectedCoin} closeModal={closeModal} />
+      ) : null}
     </Combobox>
   )
 }
