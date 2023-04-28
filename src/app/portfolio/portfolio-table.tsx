@@ -31,7 +31,7 @@ export function PortfolioTable() {
         <h2 className="text-2xl font-medium lg:text-3xl">Total Balance</h2>
         <p className="text-xl lg:text-2xl">${formatter.format(totalBalance)}</p>
       </div>
-      <Card className="dark:border-slate-700 dark:bg-slate-800">
+      <Card className="ring-transparent dark:border-slate-700 dark:bg-slate-800">
         <Title className="dark:text-slate-200">Transactions</Title>
         <Table className="mt-5">
           <TableHead>
@@ -50,21 +50,19 @@ export function PortfolioTable() {
               </TableHeaderCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className="divide-y divide-slate-300 dark:divide-slate-700">
             {portfolio.map((coin, idx) => (
               <TableRow key={idx}>
-                <TableCell className="dark:text-slate-300 border-none">
+                <TableCell className="border-none dark:text-slate-50">
                   {coin.name}
                 </TableCell>
-                <TableCell>
-                  <Text className="dark:text-slate-300">
-                    ${formatter.format(coin.price)}
-                  </Text>
+                <TableCell className="dark:text-slate-200">
+                  ${formatter.format(coin.price)}
                 </TableCell>
-                <TableCell>
-                  <Text className="dark:text-slate-300">{coin.quantity}</Text>
+                <TableCell className="dark:text-slate-200">
+                  {coin.quantity}
                 </TableCell>
-                <TableCell className="dark:text-slate-300 border-none">
+                <TableCell className="border-none dark:text-slate-200">
                   ${formatter.format(coin.cost)}
                 </TableCell>
               </TableRow>
