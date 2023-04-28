@@ -13,7 +13,7 @@ export function CoinDescription({
   const [showMore, setShowMore] = useState(false)
 
   return (
-    <article className="prose dark:prose-headings:text-gray-100 dark:prose-p:text-gray-400 dark:prose-a:text-blue-500 mt-10 w-full md:w-2/3">
+    <article className="prose prose-slate mt-10 w-full dark:prose-invert prose-a:text-indigo-400 md:w-5/6">
       {description.en.length > 0 && (
         <h3 className="text-2xl font-bold">About {name}</h3>
       )}
@@ -22,24 +22,24 @@ export function CoinDescription({
           dangerouslySetInnerHTML={{
             __html: description.en,
           }}
-          className="mt-5"
+          className="[text-wrap:balance]"
         ></p>
       ) : (
         <p
           dangerouslySetInnerHTML={{
             __html: description.en,
           }}
-          className="mt-5 line-clamp-4"
+          className="line-clamp-4 [text-wrap:balance]"
         ></p>
       )}
-      {description.en.length > 290 && (
+      {description.en.length > 250 && (
         <Button
-          className="mt-3 flex h-10 w-full items-center justify-center self-center rounded-lg bg-gray-500/20 text-sm font-bold text-gray-200 md:w-36"
           onClick={() => setShowMore((prev) => !prev)}
+          className="mt-1"
+          variant="ghost"
+          size="sm"
         >
-          <p className="text-gray-600 dark:text-gray-200">
-            {showMore ? 'Show less' : 'Show more'}
-          </p>
+          {showMore ? 'Show less' : 'Show more'}
         </Button>
       )}
     </article>

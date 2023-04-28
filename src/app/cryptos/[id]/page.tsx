@@ -20,12 +20,7 @@ export default async function CryptoPage({
           <section className="col-span-6">
             <CoinInfo coinData={coinDetails} />
             {coinDetails.market_data?.sparkline_7d ? (
-              <div>
-                <h3 className="my-10 text-2xl font-bold">
-                  {coinDetails.name} price chart
-                </h3>
-                <CoinChart marketData={coinChartData} />
-              </div>
+              <CoinChart marketData={coinChartData} name={coinDetails.name} />
             ) : null}
             <CoinDescription
               name={coinDetails.name}

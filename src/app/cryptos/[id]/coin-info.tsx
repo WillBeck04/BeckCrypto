@@ -1,6 +1,7 @@
 import { formatter } from '@/utils/formatter'
 import { CryptoDetails } from '@/utils/getCryptoDetails'
 import Image from 'next/image'
+import { ReactNode } from 'react'
 
 export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
   return (
@@ -15,10 +16,7 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
             quality={100}
           ></Image>
           <h3 className="text-3xl font-bold">{coinData.name}</h3>
-          <div
-          
-            className="w-16 rounded bg-gray-200 px-3 py-2 text-xs font-semibold text-gray-800 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-50 dark:hover:bg-gray-700"
-          >
+          <div className="w-16 rounded bg-gray-200 px-3 py-2 text-xs font-semibold text-gray-800 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-50 dark:hover:bg-gray-700">
             {coinData.symbol.toUpperCase()}
           </div>
         </div>
@@ -41,6 +39,7 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
         </p>
         <div className="flex items-center gap-3 align-middle">
           <p className="text-3xl font-bold antialiased">
+            $
             {coinData.market_data?.current_price.usd &&
               formatter.format(coinData.market_data.current_price.usd)}
           </p>
@@ -59,42 +58,54 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
             %
           </div>
         </div>
-        <div className="mt-5 rounded-lg p-3 shadow-sm dark:shadow-gray-700">
+        <MarketCard>
           Market Cap:{' '}
           <span className="text-xl font-bold">
+            $
             {coinData.market_data?.market_cap.usd
               ? formatter.format(coinData.market_data.market_cap.usd)
               : 'No data'}
           </span>
-        </div>
-        <div className="mt-5 rounded-lg p-3 shadow-sm dark:shadow-gray-700">
+        </MarketCard>
+        <MarketCard>
           Fully Diluted Market Cap:{' '}
           <span className="text-xl font-bold">
+            $
             {coinData.market_data?.fully_diluted_valuation.usd
               ? formatter.format(
                   coinData.market_data.fully_diluted_valuation.usd
                 )
               : 'No data'}
           </span>
-        </div>
-        <div className="mt-5 rounded-lg p-3 shadow-sm dark:shadow-gray-700">
+        </MarketCard>
+        <MarketCard>
           Volume 24h:{' '}
           <span className="text-xl font-bold">
+            $
             {coinData.market_data?.high_24h.usd
               ? formatter.format(coinData.market_data.high_24h.usd)
               : 'No data'}
           </span>
-        </div>
-        <div className="mt-5 rounded-lg p-3 shadow-sm dark:shadow-gray-700 ">
+        </MarketCard>
+        <MarketCard>
           {' '}
           Circulating supply:{' '}
           <span className="text-xl font-bold">
+            $
             {coinData.market_data?.circulating_supply
               ? formatter.format(coinData.market_data.circulating_supply)
               : 'No data'}
           </span>
-        </div>
+        </MarketCard>
       </div>
+    </div>
+  )
+}
+
+function MarketCard({ children }: { children: ReactNode }) {
+  return (
+    <div className="mt-5 rounded-md border border-slate-300 px-3 py-6 shadow-sm dark:border-slate-700">
+      {children}
     </div>
   )
 }
