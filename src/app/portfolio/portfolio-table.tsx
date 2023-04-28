@@ -42,7 +42,7 @@ export function PortfolioTable() {
 
         <Allocation portfolio={portfolio} />
       </div>
-      <Card className="mt-6 ring-transparent dark:border-slate-700 dark:bg-slate-800">
+      <Card className="mt-6 ring-transparent dark:border-slate-700 dark:bg-slate-800 lg:mt-12">
         <Title className="text-slate-800 dark:text-slate-200">
           Transactions
         </Title>

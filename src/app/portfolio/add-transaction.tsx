@@ -156,7 +156,11 @@ function SelectCoin({
         ))}
       </Combobox.Options>
       {selectedCoin ? (
-        <TransactionForm selectedCoin={selectedCoin} closeModal={closeModal} transaction={transaction} />
+        <TransactionForm
+          selectedCoin={selectedCoin}
+          closeModal={closeModal}
+          transaction={transaction}
+        />
       ) : null}
     </Combobox>
   )
