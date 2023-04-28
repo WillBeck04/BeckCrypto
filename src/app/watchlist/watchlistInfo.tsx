@@ -1,14 +1,14 @@
 'use client'
 
 import { useContext, useEffect, useState } from 'react'
-import { WatchlistContext } from '../providers'
 import { CryptoData } from '@/utils/getCryptoData'
 import Link from 'next/link'
 import { Table } from '@/components/table'
+import { useWatchlist } from '../watchlist-provider'
 
 export function WatchlistInfo({ cryptoData }: { cryptoData: CryptoData }) {
   const [watchlistData, setWatchlistData] = useState<CryptoData>()
-  const { watchlist } = useContext(WatchlistContext)
+  const watchlist = useWatchlist()
 
   useEffect(() => {
     const filteredData = cryptoData.filter((coin) =>

@@ -1,7 +1,6 @@
 'use client'
 
-import { useContext, useMemo } from 'react'
-import { PortfolioContext } from '../providers'
+import { useMemo } from 'react'
 import { formatter } from '@/utils/formatter'
 import {
   Card,
@@ -11,13 +10,12 @@ import {
   TableHeaderCell,
   TableBody,
   TableCell,
-  Text,
   Title,
-  Badge,
 } from '@tremor/react'
+import { usePortfolio } from '../portfolio-provider'
 
 export function PortfolioTable() {
-  const { portfolio } = useContext(PortfolioContext)
+  const portfolio = usePortfolio()
   const totalBalance = useMemo(() => {
     const result = portfolio.reduce(
       (accumulator, currentValue) => accumulator + currentValue.cost,

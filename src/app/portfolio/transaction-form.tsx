@@ -3,8 +3,8 @@ import { CryptoData } from '@/utils/getCryptoData'
 import { Input } from '../../components/ui/input'
 import { formatter } from '@/utils/formatter'
 import { FormEvent, useContext, useState } from 'react'
-import { PortfolioContext } from '@/app/providers'
 import { Button } from '../../components/ui/button'
+import { usePortfolio, usePortfolioDispatch } from '../portfolio-provider'
 
 export function TransactionForm({
   selectedCoin,
@@ -14,24 +14,24 @@ export function TransactionForm({
   closeModal: () => void
 }) {
   const [quantity, setQuantity] = useState(1)
-  const { setPortfolio } = useContext(PortfolioContext)
+  const dispatch = usePortfolioDispatch()
 
   function handleAddTransaction(e: FormEvent) {
     e.preventDefault()
-    setPortfolio((prev) => [
-      ...prev,
-      {
+    dispatch({
+      type: 'added',
+      transaction: {
         name: selectedCoin.name,
-        price: selectedCoin.current_price,
         quantity: quantity,
+        price: selectedCoin.current_price,
         cost: quantity * selectedCoin.current_price,
       },
-    ])
+    })
     closeModal()
   }
 
   return (
-    <form className="space-y-4 mt-3" onSubmit={handleAddTransaction}>
+    <form className="mt-3 space-y-4" onSubmit={handleAddTransaction}>
       <fieldset className="space-y-2">
         <label className="text-sm">Current Price</label>
         <Input

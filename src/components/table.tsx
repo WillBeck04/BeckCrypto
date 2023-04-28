@@ -16,28 +16,35 @@ import { Pagination } from './pagination'
 import { fuzzyFilter, columns } from '@/utils/helpers/cryptoTable'
 import { ChevronDown, ChevronUp, StarIcon, VenetianMask } from 'lucide-react'
 import Link from 'next/link'
-import { WatchlistContext } from '@/app/providers'
 import { TableRow } from './table-row'
 import { DebouncedInput } from './debounced-input'
+import { useWatchlist, useWatchlistDispatch } from '@/app/watchlist-provider'
 
 export function Table({ cryptoData }: { cryptoData: CryptoData }) {
   const [data, setData] = useState(() => [...cryptoData])
   const [sorting, setSorting] = useState<SortingState>([])
   const [globalFilter, setGlobalFilter] = useState('')
-  const { watchlist, setWatchlist } = useContext(WatchlistContext)
+  const watchlist = useWatchlist()
+  const dispatch = useWatchlistDispatch()
 
   const handleAddCoin = useCallback(
     (newCoin: string) => {
-      setWatchlist([...watchlist, newCoin])
+      dispatch({
+        type: 'added',
+        coin: newCoin,
+      })
     },
-    [watchlist, setWatchlist]
+    [dispatch]
   )
 
   const handleRemoveCoin = useCallback(
     (coinId: string) => {
-      setWatchlist(watchlist.filter((id) => id !== coinId))
+      dispatch({
+        type: 'removed',
+        id: coinId,
+      })
     },
-    [watchlist, setWatchlist]
+    [dispatch]
   )
 
   const table = useReactTable({

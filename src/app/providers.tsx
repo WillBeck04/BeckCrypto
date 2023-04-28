@@ -1,46 +1,16 @@
 'use client'
 
 import { ThemeProvider } from 'next-themes'
-import { ReactNode, createContext } from 'react'
-import { useLocalStorage } from 'usehooks-ts'
-import { SetValue } from './hooks/useLocalStorage'
-
-interface Portfolio {
-  name: string
-  quantity: number
-  price: number
-  cost: number
-}
-
-export const WatchlistContext = createContext<{
-  watchlist: string[]
-  setWatchlist: SetValue<string[]>
-}>({
-  watchlist: [],
-  setWatchlist: () => {},
-})
-
-export const PortfolioContext = createContext<{
-  portfolio: Portfolio[]
-  setPortfolio: SetValue<Portfolio[]>
-}>({
-  portfolio: [],
-  setPortfolio: () => {},
-})
+import { ReactNode } from 'react'
+import { WatchlistProvider } from './watchlist-provider'
+import { PortfolioProvider } from './portfolio-provider'
 
 export function Providers({ children }: { children: ReactNode }) {
-  const [watchlist, setWatchlist] = useLocalStorage<string[]>('watchlist', [])
-  const [portfolio, setPortfolio] = useLocalStorage<Portfolio[]>(
-    'portfolio',
-    []
-  )
   return (
     <ThemeProvider attribute="class">
-      <WatchlistContext.Provider value={{ watchlist, setWatchlist }}>
-        <PortfolioContext.Provider value={{ portfolio, setPortfolio }}>
-          {children}
-        </PortfolioContext.Provider>
-      </WatchlistContext.Provider>
+      <WatchlistProvider>
+        <PortfolioProvider>{children}</PortfolioProvider>
+      </WatchlistProvider>
     </ThemeProvider>
   )
 }
