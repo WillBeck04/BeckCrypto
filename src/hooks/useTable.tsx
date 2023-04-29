@@ -1,5 +1,5 @@
-import { fuzzyFilter, columns } from '@/utils/helpers/cryptoTable'
-import { CryptoData } from '@/utils/getCryptoData'
+import { fuzzyFilter, columns } from '@/lib/helpers/cryptoTable'
+import { CryptoData } from '@/lib/getCryptoData'
 import {
   SortingState,
   getCoreRowModel,

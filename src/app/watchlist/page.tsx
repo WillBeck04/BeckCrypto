@@ -1,4 +1,4 @@
-import { getCryptoData } from '@/utils/getCryptoData'
+import { getCryptoData } from '@/lib/getCryptoData'
 import { WatchlistInfo } from './watchlistInfo'
 
 export default async function WatchlistPage() {

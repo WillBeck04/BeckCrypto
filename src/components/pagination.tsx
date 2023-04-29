@@ -1,4 +1,4 @@
-import { CryptoData } from '@/utils/getCryptoData'
+import type { CryptoData } from '@/lib/getCryptoData'
 import { Table } from '@tanstack/table-core'
 import {
   BoxSelect,

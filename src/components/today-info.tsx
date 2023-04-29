@@ -1,4 +1,4 @@
-import { getGlobalCryptoData } from '@/utils/getGlobalData'
+import { getGlobalCryptoData } from '@/lib/getGlobalData'
 import TodaInfoMore from './today-info-more'
 
 export async function TodayInfo() {

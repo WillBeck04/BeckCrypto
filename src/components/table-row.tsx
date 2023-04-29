@@ -1,4 +1,4 @@
-import { CryptoData } from '@/utils/getCryptoData'
+import { CryptoData } from '@/lib/getCryptoData'
 import { Row, flexRender } from '@tanstack/react-table'
 import { StarIcon } from 'lucide-react'
 import Link from 'next/link'

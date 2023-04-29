@@ -1,6 +1,6 @@
 'use client'
 import { Card, Title, AreaChart } from '@tremor/react'
-import { ChartData } from '@/utils/getCryptoChart'
+import { ChartData } from '@/lib/getCryptoChart'
 import { useMemo } from 'react'
 
 const dataFormatter = (number: number) => {

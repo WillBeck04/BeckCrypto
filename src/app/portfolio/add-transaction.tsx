@@ -1,6 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
-import { CryptoData } from '@/utils/getCryptoData'
+import type { CryptoData } from '@/lib/getCryptoData'
 import { Combobox, Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image'
 import { Fragment, useState } from 'react'

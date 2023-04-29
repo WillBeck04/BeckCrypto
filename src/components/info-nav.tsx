@@ -1,5 +1,5 @@
-import { moneyFormat } from '@/utils/formatter'
-import { getGlobalCryptoData } from '@/utils/getGlobalData'
+import { moneyFormat } from '@/lib/formatter'
+import { getGlobalCryptoData } from '@/lib/getGlobalData'
 
 export async function InfoNav() {
   const globalData = await getGlobalCryptoData()

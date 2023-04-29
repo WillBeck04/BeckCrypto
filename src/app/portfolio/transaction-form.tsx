@@ -1,10 +1,10 @@
 'use client'
-import { CryptoData } from '@/utils/getCryptoData'
+import { CryptoData } from '@/lib/getCryptoData'
 import { Input } from '../../components/ui/input'
 import { FormEvent, useState } from 'react'
 import { Button } from '../../components/ui/button'
 import { usePortfolioDispatch } from '../portfolio-provider'
-import { moneyFormat } from '@/utils/formatter'
+import { moneyFormat } from '@/lib/formatter'
 
 export function TransactionForm({
   selectedCoin,
@@ -64,7 +64,9 @@ export function TransactionForm({
         <h3 className="text-lg font-semibold">Total Cost</h3>
         <p>{moneyFormat(quantity * selectedCoin.current_price)}</p>
       </div>
-      <Button type="submit">Buy Coin</Button>
+      <Button type="submit">
+        {transaction === 'buy' ? 'Buy' : 'Sell'} Coin
+      </Button>
     </form>
   )
 }

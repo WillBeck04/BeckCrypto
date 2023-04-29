@@ -20,9 +20,11 @@ export function Allocation({ portfolio }: { portfolio: Transaction[] }) {
       } else {
         acc.push({ name: curr.name, cost: curr.cost })
       }
-      return acc
+      return acc.filter((item) => item.cost > 0)
     }, [])
   }, [portfolio])
+
+  console.log(allocation)
 
   return (
     <div className="mt-6 max-w-lg  rounded-md border border-slate-300 bg-slate-100 px-3 py-6 shadow dark:border-slate-700 dark:bg-slate-800 lg:mt-0">

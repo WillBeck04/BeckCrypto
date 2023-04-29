@@ -1,13 +1,13 @@
 'use client'
 
-import { cn } from '@/utils/cn'
+import { cn } from '@/lib/cn'
 import { usePortfolio } from '../portfolio-provider'
 import { useMemo } from 'react'
 import { Allocation } from './allocation'
 import { PortfolioTable } from './portfolio-table'
 import { AddTransaction } from './add-transaction'
-import { CryptoData } from '@/utils/getCryptoData'
-import { moneyFormat } from '@/utils/formatter'
+import type { CryptoData } from '@/lib/getCryptoData'
+import { moneyFormat } from '@/lib/formatter'
 
 export function Dashboard({ cryptos }: { cryptos: CryptoData }) {
   const portfolio = usePortfolio()
@@ -37,7 +37,13 @@ export function Dashboard({ cryptos }: { cryptos: CryptoData }) {
         </div>
         <Allocation portfolio={portfolio} />
       </div>
-      <PortfolioTable portfolio={portfolio} />
+      {portfolio.length > 0 ? (
+        <PortfolioTable portfolio={portfolio} />
+      ) : (
+        <p className="mt-6 lg:mt-12">
+          You have no transactions in your portfolio yet. Add one!
+        </p>
+      )}
       <AddTransaction cryptos={cryptos} />
     </>
   )

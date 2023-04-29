@@ -1,7 +1,7 @@
 'use client'
 
-import { useContext, useEffect, useState } from 'react'
-import { CryptoData } from '@/utils/getCryptoData'
+import { useEffect, useState } from 'react'
+import type { CryptoData } from '@/lib/getCryptoData'
 import Link from 'next/link'
 import { Table } from '@/components/table'
 import { useWatchlist } from '../watchlist-provider'

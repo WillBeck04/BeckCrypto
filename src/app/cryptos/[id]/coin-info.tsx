@@ -1,5 +1,5 @@
-import { moneyFormat } from '@/utils/formatter'
-import { CryptoDetails } from '@/utils/getCryptoDetails'
+import { moneyFormat } from '@/lib/formatter'
+import { CryptoDetails } from '@/lib/getCryptoDetails'
 import Image from 'next/image'
 import { ReactNode } from 'react'
 

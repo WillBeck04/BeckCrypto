@@ -1,4 +1,4 @@
-import { TrendingCoins, getTrendingCoins } from "@/utils/getTrendingCoins";
+import { TrendingCoins, getTrendingCoins } from "@/lib/getTrendingCoins";
 import Image from "next/image";
 import Link from "next/link";
 

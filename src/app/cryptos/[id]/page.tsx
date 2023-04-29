@@ -1,9 +1,9 @@
 import { TrendingCoins } from '@/components/trending-coins'
-import { getCryptoDetails } from '@/utils/getCryptoDetails'
+import { getCryptoDetails } from '@/lib/getCryptoDetails'
 import { CoinInfo } from './coin-info'
 import { CoinDescription } from './coin-description'
 import { CoinChart } from './coin-chart'
-import { getCryptoChart } from '@/utils/getCryptoChart'
+import { getCryptoChart } from '@/lib/getCryptoChart'
 
 export default async function CryptoPage({
   params,

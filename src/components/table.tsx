@@ -1,6 +1,6 @@
 'use client'
 
-import { CryptoData } from '@/utils/getCryptoData'
+import type { CryptoData } from '@/lib/getCryptoData'
 
 import { ReactNode } from 'react'
 import { Pagination } from './pagination'

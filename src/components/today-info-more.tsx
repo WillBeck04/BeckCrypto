@@ -1,7 +1,6 @@
 'use client'
-
-import { moneyFormat } from '@/utils/formatter'
-import { GlobalData } from '@/utils/getGlobalData'
+import type { GlobalData } from '@/lib/getGlobalData'
+import { moneyFormat } from '@/lib/formatter'
 import { useState } from 'react'
 
 export default function TodaInfoMore({
