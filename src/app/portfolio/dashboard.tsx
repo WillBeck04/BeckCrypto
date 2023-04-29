@@ -9,6 +9,7 @@ import { AddTransaction } from './add-transaction'
 import type { CryptoData } from '@/lib/getCryptoData'
 import { moneyFormat } from '@/lib/formatter'
 import { Card } from '@/components/ui/card'
+import { Title } from '@/components/ui/title'
 
 export function Dashboard({ cryptos }: { cryptos: CryptoData }) {
   const portfolio = usePortfolio()
@@ -56,7 +57,7 @@ export function Dashboard({ cryptos }: { cryptos: CryptoData }) {
               </p>
               <p className="flex flex-col text-sm text-slate-700 dark:text-slate-300">
                 Transaction count:
-                <span className="text-xl font-medium">
+                <span className="text-xl font-medium text-slate-900 dark:text-slate-50">
                   {portfolio.length}
                 </span>
               </p>
@@ -90,8 +91,4 @@ function Balance({ totalBalance }: { totalBalance: number }) {
       </p>
     </div>
   )
-}
-
-export function Title({ children }: { children: ReactNode }) {
-  return <h3 className="text-xl font-medium lg:text-2xl">{children}</h3>
 }

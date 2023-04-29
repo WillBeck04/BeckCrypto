@@ -2,7 +2,7 @@
 import { DonutChart, Legend } from '@tremor/react'
 import { Transaction } from '../portfolio-provider'
 import { useMemo } from 'react'
-import { Title } from './dashboard'
+import { Title } from '@/components/ui/title'
 import { Card } from '@/components/ui/card'
 
 interface Allocation {
@@ -25,8 +25,6 @@ export function Allocation({ portfolio }: { portfolio: Transaction[] }) {
       return acc.filter((item) => item.cost > 0)
     }, [])
   }, [portfolio])
-
-  console.log(allocation)
 
   return (
     <Card>

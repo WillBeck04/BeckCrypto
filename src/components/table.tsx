@@ -20,24 +20,25 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
 
   return (
     <>
-      <div className="relative mt-6 overflow-x-auto py-2 sm:rounded-lg lg:px-0">
-        <div className="my-5 flex flex-col gap-5 lg:flex-row lg:justify-between">
-          <DebouncedInput
-            value={globalFilter ?? ''}
-            onChange={(value) => setGlobalFilter(String(value))}
-            placeholder="Search coins..."
-          />
-          <div className="flex items-center gap-3">
-            <LinkButton href="/watchlist">
-              <StarIcon className="h-4 w-4 fill-slate-700 text-slate-700 dark:fill-slate-300 dark:text-slate-300" />
-              Watchlist
-            </LinkButton>
-            <LinkButton href="/portfolio">
-              <VenetianMask className="h-4 w-4 text-slate-700 dark:text-slate-300" />
-              Portfolio
-            </LinkButton>
-          </div>
+      <div className="my-3 flex gap-5 lg:mt-6 lg:justify-between">
+        <DebouncedInput
+          value={globalFilter ?? ''}
+          onChange={(value) => setGlobalFilter(String(value))}
+          placeholder="Search coins..."
+        />
+
+        <div className="flex items-center gap-3 overflow-x-auto">
+          <LinkButton href="/watchlist">
+            <StarIcon className="h-4 w-4 fill-slate-700 text-slate-700 dark:fill-slate-300 dark:text-slate-300" />
+            Watchlist
+          </LinkButton>
+          <LinkButton href="/portfolio">
+            <VenetianMask className="h-4 w-4 text-slate-700 dark:text-slate-300" />
+            Portfolio
+          </LinkButton>
         </div>
+      </div>
+      <div className="relative overflow-x-auto py-2 sm:rounded-lg lg:px-0">
         <table className="w-full text-left text-sm">
           <thead className="border-b border-slate-200 uppercase dark:border-slate-800">
             {table.getHeaderGroups().map((headerGroup) => (
