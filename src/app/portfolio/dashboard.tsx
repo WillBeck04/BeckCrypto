@@ -2,12 +2,13 @@
 
 import { cn } from '@/lib/cn'
 import { usePortfolio } from '../portfolio-provider'
-import { useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 import { Allocation } from './allocation'
 import { PortfolioTable } from './portfolio-table'
 import { AddTransaction } from './add-transaction'
 import type { CryptoData } from '@/lib/getCryptoData'
 import { moneyFormat } from '@/lib/formatter'
+import { Card } from '@/components/ui/card'
 
 export function Dashboard({ cryptos }: { cryptos: CryptoData }) {
   const portfolio = usePortfolio()
@@ -19,23 +20,49 @@ export function Dashboard({ cryptos }: { cryptos: CryptoData }) {
     )
     return result
   }, [portfolio])
+
+  const biggestBuy = useMemo(() => {
+    const costs = portfolio.map((t) => t.cost)
+
+    return Math.max(...costs)
+  }, [portfolio])
+
+  const biggestSell = useMemo(() => {
+    const costs = portfolio.map((t) => t.cost)
+
+    return Math.min(...costs)
+  }, [portfolio])
+
   return (
     <>
       <div>
-        <div className="mb-6">
-          <h2 className=" text-slate-700 dark:text-slate-300">
-            Current Balance
-          </h2>
-          <p
-            className={cn(
-              'mt-1 text-2xl lg:text-3xl',
-              totalBalance > 0 ? 'text-green-500' : 'text-red-500'
-            )}
-          >
-            {moneyFormat(totalBalance)}
-          </p>
+        <Balance totalBalance={totalBalance} />
+        <div className="flex flex-col justify-between lg:flex-row">
+          <Allocation portfolio={portfolio} />
+          <Card>
+            <Title>Stats</Title>
+            <div className="mt-3 space-y-3">
+              <p className="flex flex-col text-sm text-slate-700 dark:text-slate-300">
+                Biggest Buy:
+                <span className="text-xl font-medium text-green-500">
+                  {moneyFormat(biggestBuy)}
+                </span>
+              </p>
+              <p className="flex flex-col text-sm text-slate-700 dark:text-slate-300">
+                Biggest Sell:
+                <span className="text-xl font-medium text-red-500">
+                  {moneyFormat(biggestSell).replace('-', '')}
+                </span>
+              </p>
+              <p className="flex flex-col text-sm text-slate-700 dark:text-slate-300">
+                Transaction count:
+                <span className="text-xl font-medium">
+                  {portfolio.length}
+                </span>
+              </p>
+            </div>
+          </Card>
         </div>
-        <Allocation portfolio={portfolio} />
       </div>
       {portfolio.length > 0 ? (
         <PortfolioTable portfolio={portfolio} />
@@ -47,4 +74,24 @@ export function Dashboard({ cryptos }: { cryptos: CryptoData }) {
       <AddTransaction cryptos={cryptos} />
     </>
   )
+}
+
+function Balance({ totalBalance }: { totalBalance: number }) {
+  return (
+    <div>
+      <h2 className=" text-slate-700 dark:text-slate-300">Current Balance</h2>
+      <p
+        className={cn(
+          'mt-1 text-2xl lg:text-3xl',
+          totalBalance > 0 ? 'text-green-500' : 'text-red-500'
+        )}
+      >
+        {moneyFormat(totalBalance)}
+      </p>
+    </div>
+  )
+}
+
+export function Title({ children }: { children: ReactNode }) {
+  return <h3 className="text-xl font-medium lg:text-2xl">{children}</h3>
 }

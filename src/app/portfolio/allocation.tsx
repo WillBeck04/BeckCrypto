@@ -1,7 +1,9 @@
 'use client'
-import { DonutChart } from '@tremor/react'
-import { Transaction, usePortfolio } from '../portfolio-provider'
+import { DonutChart, Legend } from '@tremor/react'
+import { Transaction } from '../portfolio-provider'
 import { useMemo } from 'react'
+import { Title } from './dashboard'
+import { Card } from '@/components/ui/card'
 
 interface Allocation {
   name: string
@@ -27,8 +29,8 @@ export function Allocation({ portfolio }: { portfolio: Transaction[] }) {
   console.log(allocation)
 
   return (
-    <div className="mt-6 max-w-lg  rounded-md border border-slate-300 bg-slate-100 px-3 py-6 shadow dark:border-slate-700 dark:bg-slate-800 lg:mt-0">
-      <h2 className="ml-3 text-xl font-medium lg:text-2xl">Allocation</h2>
+    <Card>
+      <Title>Allocation</Title>
       <DonutChart
         className="mt-6"
         data={allocation}
@@ -37,6 +39,10 @@ export function Allocation({ portfolio }: { portfolio: Transaction[] }) {
         valueFormatter={valueFormatter}
         colors={['slate', 'violet', 'indigo', 'rose', 'cyan', 'amber']}
       />
-    </div>
+      <Legend
+        categories={allocation.map((asset) => asset.name)}
+        colors={['slate', 'violet', 'indigo', 'rose', 'cyan', 'amber']}
+      />
+    </Card>
   )
 }

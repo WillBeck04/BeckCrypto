@@ -17,7 +17,7 @@ import { moneyFormat } from '@/lib/formatter'
 export function PortfolioTable({ portfolio }: { portfolio: Transaction[] }) {
   return (
     <div>
-      <div className="mt-6 rounded-md border border-slate-100 bg-slate-50 p-5 shadow-md dark:border-slate-700 dark:bg-slate-800 lg:mt-12">
+      <div className="mt-6 rounded-md border border-slate-100 bg-slate-50 p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800 lg:mt-12">
         <Title className="text-slate-800 dark:text-slate-200">
           Transactions
         </Title>
@@ -56,10 +56,7 @@ export function PortfolioTable({ portfolio }: { portfolio: Transaction[] }) {
                     coin.quantity < 0 && 'text-red-500'
                   )}
                 >
-                  {coin.quantity >= 0
-                    ? moneyFormat(coin.cost)
-                    : moneyFormat(coin.cost).slice(0, 1) +
-                      moneyFormat(coin.cost).slice(2)}
+                  {moneyFormat(coin.cost).replace('-', '')}
                 </TableCell>
               </TableRow>
             ))}
