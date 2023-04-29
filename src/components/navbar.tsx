@@ -4,13 +4,17 @@ import { MobileMenu } from './mobile-menu'
 import Link from 'next/link'
 import { Star, VenetianMask } from 'lucide-react'
 import { ReactNode } from 'react'
+import { SearchPopover } from './search-popover'
+import { CryptoData, getCryptoData } from '@/lib/getCryptoData'
+import { getTrendingCoins } from '@/lib/getTrendingCoins'
 
-export function Navbar() {
+export async function Navbar() {
+  const cryptos = await getCryptoData()
   return (
     <header className="border-b border-slate-200 dark:border-slate-800">
       <div className="flex flex-col lg:flex-col-reverse">
         <div className="w-full lg:mx-auto lg:max-w-7xl lg:px-6">
-          <MainNav />
+          <MainNav cryptos={cryptos} />
         </div>
         <div className="w-full border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center justify-between lg:mx-auto lg:max-w-7xl">
@@ -26,9 +30,9 @@ export function Navbar() {
   )
 }
 
-function MainNav() {
+function MainNav({ cryptos }: { cryptos: CryptoData }) {
   return (
-    <nav className="flex w-full items-baseline justify-between border-b border-slate-200 px-4 py-6 dark:border-slate-800 lg:justify-normal lg:border-none lg:px-0">
+    <nav className="flex w-full align-middle justify-between border-b border-slate-200 px-4 py-6 dark:border-slate-800 lg:justify-normal lg:border-none lg:px-0">
       <Link href="/">
         <h3 className="text-xl font-bold">Cryptosito</h3>
       </Link>
@@ -46,12 +50,19 @@ function MainNav() {
           </NavLink>
         </li>
       </ul>
+      <SearchPopover cryptos={cryptos} />
       <MobileMenu />
     </nav>
   )
 }
 
-export function NavLink({ children, href }: { children: ReactNode; href: string }) {
+export function NavLink({
+  children,
+  href,
+}: {
+  children: ReactNode
+  href: string
+}) {
   return (
     <Link
       href={href}

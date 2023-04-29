@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/cn'
 import { usePortfolio } from '../portfolio-provider'
-import { ReactNode, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Allocation } from './allocation'
 import { PortfolioTable } from './portfolio-table'
 import { AddTransaction } from './add-transaction'
@@ -80,7 +80,7 @@ export function Dashboard({ cryptos }: { cryptos: CryptoData }) {
 function Balance({ totalBalance }: { totalBalance: number }) {
   return (
     <div>
-      <h2 className=" text-slate-700 dark:text-slate-300">Current Balance</h2>
+      <h2 className=" text-slate-800 dark:text-slate-300">Current Balance</h2>
       <p
         className={cn(
           'mt-1 text-2xl lg:text-3xl',

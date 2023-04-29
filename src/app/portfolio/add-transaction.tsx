@@ -122,7 +122,7 @@ function SelectCoin({
 
   const filteredCryptos =
     query === ''
-      ? cryptos.slice(0, 10)
+      ? cryptos
       : cryptos.filter((crypto) => {
           return crypto.name.toLowerCase().includes(query.toLowerCase())
         })
@@ -135,15 +135,18 @@ function SelectCoin({
         displayValue={(crypto: CryptoData[number]) =>
           selectedCoin ? crypto.name : ''
         }
-        className="block w-full rounded-md border-0 px-3 py-1 text-slate-900 outline-none ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-slate-700 dark:text-slate-100 dark:ring-slate-700 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6"
+        className="block w-full rounded-md border-0 px-3 py-2 text-slate-900 outline-none ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 dark:bg-slate-700 dark:text-slate-100 dark:ring-slate-700 dark:focus:ring-indigo-500 sm:text-sm sm:leading-6"
       />
-      <Combobox.Options className="mt-5">
-        {filteredCryptos.slice(0, 10).map((crypto) => (
-          <Combobox.Option
+      <Combobox.Options
+        className="mt-5 max-h-52 overflow-y-auto"
+        static={selectedCoin ? false : true}
+      >
+        {filteredCryptos.map((crypto) => (
+          <Combobox.Option 
             key={crypto.id}
             value={crypto}
             className={({ active }) =>
-              `relative cursor-pointer select-none rounded-md py-2 pl-10 pr-4 ${
+              `relative cursor-pointer select-none rounded-md py-2 pl-6 pr-4 ${
                 active ? 'bg-indigo-500 text-white' : null
               }`
             }
