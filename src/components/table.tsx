@@ -24,7 +24,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
         <DebouncedInput
           value={globalFilter ?? ''}
           onChange={(value) => setGlobalFilter(String(value))}
-          placeholder="Search coins..."
+          placeholder="Search table..."
         />
 
         <div className="flex items-center gap-3 overflow-x-auto">

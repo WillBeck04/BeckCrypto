@@ -6,7 +6,6 @@ import { Star, VenetianMask } from 'lucide-react'
 import { ReactNode } from 'react'
 import { SearchPopover } from './search-popover'
 import { CryptoData, getCryptoData } from '@/lib/getCryptoData'
-import { getTrendingCoins } from '@/lib/getTrendingCoins'
 
 export async function Navbar() {
   const cryptos = await getCryptoData()
@@ -32,7 +31,7 @@ export async function Navbar() {
 
 function MainNav({ cryptos }: { cryptos: CryptoData }) {
   return (
-    <nav className="flex w-full align-middle justify-between border-b border-slate-200 px-4 py-6 dark:border-slate-800 lg:justify-normal lg:border-none lg:px-0">
+    <nav className="flex w-full items-baseline justify-between border-b border-slate-200 px-4 py-6 dark:border-slate-800 lg:justify-normal lg:border-none lg:px-0">
       <Link href="/">
         <h3 className="text-xl font-bold">Cryptosito</h3>
       </Link>
@@ -50,8 +49,10 @@ function MainNav({ cryptos }: { cryptos: CryptoData }) {
           </NavLink>
         </li>
       </ul>
-      <SearchPopover cryptos={cryptos} />
-      <MobileMenu />
+      <div className="flex items-baseline gap-3">
+        <SearchPopover cryptos={cryptos} />
+        <MobileMenu />
+      </div>
     </nav>
   )
 }

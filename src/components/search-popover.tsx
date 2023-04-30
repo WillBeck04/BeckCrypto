@@ -5,17 +5,26 @@ import { Combobox, Popover, Transition } from '@headlessui/react'
 import { Search } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 
 export function SearchPopover({ cryptos }: { cryptos: CryptoData }) {
   const [query, setQuery] = useState('')
   const [selectedCoin, setSelectedCoin] = useState<CryptoData[number] | null>(
     null
   )
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    document.addEventListener('keydown', () => {})
-  })
+    function openSearch(e: KeyboardEvent) {
+      if (e.key === '/') {
+        buttonRef?.current?.click()
+      }
+    }
+
+    document.addEventListener('keydown', openSearch)
+
+    return () => window.removeEventListener('keydown', openSearch)
+  }, [])
 
   const filteredCryptos =
     query === ''
@@ -26,8 +35,11 @@ export function SearchPopover({ cryptos }: { cryptos: CryptoData }) {
 
   return (
     <Popover className="relative ml-5 hidden lg:block">
-      <Popover.Button className="rounded-md bg-slate-200 py-2 pl-4 text-sm outline-none dark:bg-slate-700">
-        <div className="flex items-center justify-between gap-10">
+      <Popover.Button
+        ref={buttonRef}
+        className="hidden rounded-md py-2 pl-4 text-sm outline-none dark:bg-slate-700 lg:block lg:bg-slate-200"
+      >
+        <div className="items-center justify-between gap-10 lg:flex">
           <div className="flex gap-3">
             <Search className="h-4 w-4 text-slate-700 dark:text-slate-300" />
             <span className="text-xs text-slate-600 dark:text-slate-400">
@@ -42,7 +54,7 @@ export function SearchPopover({ cryptos }: { cryptos: CryptoData }) {
       </Popover.Button>
       <Transition
         as={Fragment}
-        enter="transition ease-out duration-200"
+        enter="transition ease-in duration-200"
         enterFrom="opacity-0"
         enterTo="opacity-100"
         leave="transition ease-in duration-150"
@@ -89,6 +101,11 @@ export function SearchPopover({ cryptos }: { cryptos: CryptoData }) {
                 ))}
               </Combobox.Options>
             </Combobox>
+            {filteredCryptos.length === 0 ? (
+              <p className="p-2 text-sm">
+                Sorry, we couldn&apos;t find that crypto
+              </p>
+            ) : null}
           </div>
         </Popover.Panel>
       </Transition>
