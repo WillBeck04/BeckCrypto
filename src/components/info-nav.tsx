@@ -12,7 +12,7 @@ export async function InfoNav() {
         </span>
       </li>
       <li className="inline-flex gap-1">
-        <p>Market Cap</p>
+        <p>Markets:</p>
         <span className="text-indigo-500 dark:text-indigo-400 ">
           {globalData.markets}
         </span>

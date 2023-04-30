@@ -13,7 +13,7 @@ export function CoinDescription({
   const [showMore, setShowMore] = useState(false)
 
   return (
-    <article className="prose prose-slate mt-10 w-full dark:prose-invert prose-a:text-indigo-400 md:w-5/6">
+    <article className="prose prose-base prose-slate mt-10 w-full dark:prose-invert prose-a:text-indigo-400 md:w-5/6">
       {description.en.length > 0 && (
         <h3 className="text-2xl font-bold">About {name}</h3>
       )}
@@ -35,8 +35,7 @@ export function CoinDescription({
       {description.en.length > 270 && (
         <Button
           onClick={() => setShowMore((prev) => !prev)}
-          className="mt-1"
-          variant="ghost"
+          className="mt-1 bg-opacity-25"
           size="sm"
         >
           {showMore ? 'Show less' : 'Show more'}

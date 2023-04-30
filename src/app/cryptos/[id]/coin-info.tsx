@@ -1,7 +1,7 @@
+import { Card } from '@/components/ui/card'
 import { moneyFormat } from '@/lib/formatter'
 import { CryptoDetails } from '@/lib/getCryptoDetails'
 import Image from 'next/image'
-import { ReactNode } from 'react'
 
 export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
   return (
@@ -57,48 +57,40 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
             %
           </div>
         </div>
-        <MarketCard>
-          Market Cap:{' '}
-          <span className="text-xl font-bold">
-            {coinData.market_data?.market_cap.usd
-              ? moneyFormat(coinData.market_data.market_cap.usd)
-              : 'No data'}
-          </span>
-        </MarketCard>
-        <MarketCard>
-          Fully Diluted Market Cap:{' '}
-          <span className="text-xl font-bold">
-            {coinData.market_data?.fully_diluted_valuation.usd
-              ? moneyFormat(coinData.market_data.fully_diluted_valuation.usd)
-              : 'No data'}
-          </span>
-        </MarketCard>
-        <MarketCard>
-          Volume 24h:{' '}
-          <span className="text-xl font-bold">
-            {coinData.market_data?.high_24h.usd
-              ? moneyFormat(coinData.market_data.high_24h.usd)
-              : 'No data'}
-          </span>
-        </MarketCard>
-        <MarketCard>
-          {' '}
-          Circulating supply:{' '}
-          <span className="text-xl font-bold">
-            {coinData.market_data?.circulating_supply
-              ? moneyFormat(coinData.market_data.circulating_supply)
-              : 'No data'}
-          </span>
-        </MarketCard>
+        <MarketCard
+          title="Market cap:"
+          dataProperty={coinData.market_data?.market_cap.usd}
+        />
+        <MarketCard
+          title="Dilluted valuation:"
+          dataProperty={coinData.market_data?.fully_diluted_valuation.usd}
+        />
+        <MarketCard
+          title="Volume 24h:"
+          dataProperty={coinData.market_data?.high_24h.usd}
+        />
+        <MarketCard
+          title="Circulating supply:"
+          dataProperty={coinData.market_data?.circulating_supply}
+        />
       </div>
     </div>
   )
 }
 
-function MarketCard({ children }: { children: ReactNode }) {
+function MarketCard({
+  title,
+  dataProperty,
+}: {
+  title: string
+  dataProperty: number | undefined
+}) {
   return (
-    <div className="mt-5 rounded-md border border-slate-300 px-3 py-6 shadow-sm dark:border-slate-700">
-      {children}
-    </div>
+    <Card>
+      <span>{title}</span>{' '}
+      <span className="text-xl font-bold">
+        {dataProperty ? moneyFormat(dataProperty) : 'No data'}
+      </span>
+    </Card>
   )
 }
