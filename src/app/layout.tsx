@@ -28,6 +28,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen">
         <Providers>
+          {/* @ts-expect-error Async Server Component */}
           <Navbar />
           <div className="absolute -z-10 h-96 w-full rounded-md bg-gradient-to-b from-indigo-500/20 to-slate-100/20 dark:to-slate-900/20"></div>
           <Container>{children}</Container>
