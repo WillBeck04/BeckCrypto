@@ -34,7 +34,7 @@ export function SearchPopover({ cryptos }: { cryptos: CryptoData }) {
         })
 
   return (
-    <Popover className="relative ml-5 hidden lg:block">
+    <Popover className="ml-5 relative hidden lg:block">
       <Popover.Button
         ref={buttonRef}
         className="hidden rounded-md py-2 pl-4 text-sm outline-none dark:bg-slate-700 lg:block lg:bg-slate-200"

@@ -6,6 +6,7 @@ import { Star, VenetianMask } from 'lucide-react'
 import { ReactNode } from 'react'
 import { SearchPopover } from './search-popover'
 import { CryptoData, getCryptoData } from '@/lib/getCryptoData'
+import MobileSearch from './mobile-search'
 
 export async function Navbar() {
   const cryptos = await getCryptoData()
@@ -51,6 +52,7 @@ function MainNav({ cryptos }: { cryptos: CryptoData }) {
       </ul>
       <div className="flex items-baseline gap-3">
         <SearchPopover cryptos={cryptos} />
+        <MobileSearch cryptos={cryptos} />
         <MobileMenu />
       </div>
     </nav>

@@ -9,7 +9,7 @@ import { ChevronDown, ChevronUp, StarIcon, VenetianMask } from 'lucide-react'
 import Link from 'next/link'
 import { TableRow } from './table-row'
 import { DebouncedInput } from './debounced-input'
-import { useWatchlist, useWatchlistDispatch } from '@/app/watchlist-provider'
+import { useWatchlist } from '@/app/watchlist-provider'
 import { useTable } from '@/hooks/useTable'
 import { flexRender } from '@tanstack/react-table'
 
@@ -20,7 +20,7 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
 
   return (
     <>
-      <div className="my-3 flex gap-5 lg:mt-6 lg:justify-between">
+      <div className="my-6 flex gap-5 lg:mt-6 lg:justify-between">
         <DebouncedInput
           value={globalFilter ?? ''}
           onChange={(value) => setGlobalFilter(String(value))}
