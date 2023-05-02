@@ -35,7 +35,7 @@ export function CoinDescription({
       {description.en.length > 270 && (
         <Button
           onClick={() => setShowMore((prev) => !prev)}
-          className="mt-1 bg-opacity-25"
+          className="mt-1"
           size="sm"
         >
           {showMore ? 'Show less' : 'Show more'}
