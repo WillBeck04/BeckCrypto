@@ -11,7 +11,7 @@ import MobileSearch from './mobile-search'
 export async function Navbar() {
   const cryptos = await getCryptoData()
   return (
-    <header className="border-b border-slate-200 dark:border-slate-800">
+    <header className="border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
       <div className="flex flex-col lg:flex-col-reverse">
         <div className="w-full lg:mx-auto lg:max-w-7xl lg:px-6">
           <MainNav cryptos={cryptos} />
@@ -32,7 +32,7 @@ export async function Navbar() {
 
 function MainNav({ cryptos }: { cryptos: CryptoData }) {
   return (
-    <nav className="flex w-full items-baseline justify-between border-b border-slate-200 px-4 py-6 dark:border-slate-800 lg:justify-normal lg:border-none lg:px-0">
+    <nav className="flex w-full items-baseline justify-between border-b border-slate-200 px-4 py-4 dark:border-slate-800 lg:justify-normal lg:border-none lg:px-0">
       <Link href="/">
         <h3 className="text-xl font-bold">Cryptosito</h3>
       </Link>

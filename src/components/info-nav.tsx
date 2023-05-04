@@ -4,7 +4,7 @@ import { getGlobalCryptoData } from '@/lib/getGlobalData'
 export async function InfoNav() {
   const globalData = await getGlobalCryptoData()
   return (
-    <ul className="flex gap-3 overflow-x-auto whitespace-nowrap px-4 py-5 text-xs font-medium lg:px-6">
+    <ul className="flex gap-3 overflow-x-auto whitespace-nowrap px-4 py-4 text-xs font-medium lg:px-6">
       <li className="inline-flex gap-1">
         <p>Cryptos:</p>
         <span className="text-indigo-500 dark:text-indigo-400 ">
