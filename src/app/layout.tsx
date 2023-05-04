@@ -12,6 +12,7 @@ export const metadata = {
 
 const inter = Inter({
   subsets: ['latin'],
+  display: 'swap',
   variable: '--font-inter',
 })
 
@@ -24,7 +25,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} font-sans`}
+      className={`${inter.variable}`}
     >
       <body className="min-h-screen">
         <Providers>

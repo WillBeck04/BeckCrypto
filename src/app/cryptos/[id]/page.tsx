@@ -6,25 +6,32 @@ import { CoinChart } from './coin-chart'
 import { getCryptoChart } from '@/lib/getCryptoChart'
 import { CryptoNews } from './cryptoNews'
 import { PriceProgress } from './coin-progress'
+import { Suspense } from 'react'
 
 export default async function CryptoPage({
   params,
 }: {
   params: { id: string }
 }) {
-  const coinDetails = await getCryptoDetails(params.id)
-  const coinChartData = await getCryptoChart(params.id)
+  const coinDetails = getCryptoDetails(params.id)
+  const coinChart = getCryptoChart(params.id)
+
+  const [coinDetailsData, coinChartData] = await Promise.all([
+    coinDetails,
+    coinChart,
+  ])
+
   return (
     <div>
       <div className="flex grid-cols-8 flex-col lg:grid lg:gap-10">
         <section className="col-span-6">
-          <CoinInfo coinData={coinDetails} />
-          {coinDetails.market_data?.sparkline_7d ? (
-            <CoinChart marketData={coinChartData} name={coinDetails.name} />
+          <CoinInfo coinData={coinDetailsData} />
+          {coinDetailsData.market_data?.sparkline_7d ? (
+            <CoinChart marketData={coinChartData} name={coinDetailsData.name} />
           ) : null}
           <CoinDescription
-            name={coinDetails.name}
-            description={coinDetails.description}
+            name={coinDetailsData.name}
+            description={coinDetailsData.description}
           />
         </section>
 
@@ -33,8 +40,10 @@ export default async function CryptoPage({
           <TrendingCoins />
         </div>
 
-        {/* @ts-expect-error Async Server Component */}
-        <CryptoNews id={params.id} />
+        <Suspense fallback={'Loading'}>
+          {/* @ts-expect-error Async Server Component */}
+          <CryptoNews id={params.id} />
+        </Suspense>
       </div>
     </div>
   )
