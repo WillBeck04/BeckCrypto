@@ -20,14 +20,8 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
 
   return (
     <>
-      <div className="my-6 flex gap-5 lg:mt-6 lg:justify-between">
-        <DebouncedInput
-          value={globalFilter ?? ''}
-          onChange={(value) => setGlobalFilter(String(value))}
-          placeholder="Search table..."
-        />
-
-        <div className="flex items-center gap-3 overflow-x-auto">
+      <div className="mt-6 mb-3 flex gap-5 lg:mt-12 lg:justify-between">
+        <div className="flex items-center gap-3">
           <LinkButton href="/watchlist">
             <StarIcon className="h-4 w-4 fill-slate-700 text-slate-700 dark:fill-slate-300 dark:text-slate-300" />
             Watchlist
@@ -37,6 +31,12 @@ export function Table({ cryptoData }: { cryptoData: CryptoData }) {
             Portfolio
           </LinkButton>
         </div>
+        <DebouncedInput
+          value={globalFilter ?? ''}
+          onChange={(value) => setGlobalFilter(String(value))}
+          placeholder="Search table..."
+          className="hidden md:block"
+        />
       </div>
       <div className="relative overflow-x-auto py-2 sm:rounded-lg lg:px-0">
         <table className="w-full text-left text-sm">
