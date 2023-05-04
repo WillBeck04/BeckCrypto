@@ -5,6 +5,7 @@ import { CoinDescription } from './coin-description'
 import { CoinChart } from './coin-chart'
 import { getCryptoChart } from '@/lib/getCryptoChart'
 import { CryptoNews } from './cryptoNews'
+import { PriceProgress } from './coin-progress'
 
 export default async function CryptoPage({
   params,

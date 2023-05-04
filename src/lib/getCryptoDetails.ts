@@ -25,6 +25,9 @@ const cryptoDetailsSchema = z.object({
       high_24h: z.object({
         usd: z.number().optional(),
       }),
+      low_24h: z.object({
+        usd: z.number(),
+      }),
       fully_diluted_valuation: z.object({
         usd: z.number().optional(),
       }),

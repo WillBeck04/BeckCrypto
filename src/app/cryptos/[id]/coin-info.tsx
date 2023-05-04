@@ -2,6 +2,7 @@ import { Card } from '@/components/ui/card'
 import { moneyFormat } from '@/lib/formatter'
 import { CryptoDetails } from '@/lib/getCryptoDetails'
 import Image from 'next/image'
+import { PriceProgress } from './coin-progress'
 
 export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
   return (
@@ -57,6 +58,30 @@ export function CoinInfo({ coinData }: { coinData: CryptoDetails }) {
             %
           </div>
         </div>
+        <div className="mt-6 flex items-center gap-3">
+          <p className="text-xs text-slate-600 dark:text-slate-400">
+            Low:
+            <span className="ml-1 font-semibold text-slate-900 dark:text-slate-50">
+              {coinData.market_data?.low_24h.usd &&
+                moneyFormat(coinData.market_data?.low_24h.usd)}
+            </span>
+          </p>
+          {coinData.market_data && (
+            <PriceProgress
+              currentPrice={coinData.market_data.current_price.usd}
+              highestPrice={coinData.market_data.high_24h.usd}
+              lowestPrice={coinData.market_data.low_24h.usd}
+            />
+          )}
+          <p className="text-xs  text-slate-600 dark:text-slate-400">
+            High:
+            <span className="ml-1 font-semibold text-slate-900 dark:text-slate-50">
+              {coinData.market_data?.high_24h.usd &&
+                moneyFormat(coinData.market_data?.high_24h.usd)}
+            </span>
+          </p>
+        </div>
+
         <MarketCard
           title="Market cap:"
           dataProperty={coinData.market_data?.market_cap.usd}
