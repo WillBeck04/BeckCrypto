@@ -1,6 +1,6 @@
 'use client'
 import { DonutChart, Legend } from '@tremor/react'
-import { Transaction } from '../portfolio-provider'
+import { Transaction } from '../../context/portfolio-provider'
 import { useMemo } from 'react'
 import { Title } from '@/components/ui/title'
 import { Card } from '@/components/ui/card'

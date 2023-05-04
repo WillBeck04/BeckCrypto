@@ -3,7 +3,7 @@ import { CryptoData } from '@/lib/getCryptoData'
 import { Input } from '../../components/ui/input'
 import { FormEvent, useState } from 'react'
 import { Button } from '../../components/ui/button'
-import { usePortfolioDispatch } from '../portfolio-provider'
+import { usePortfolioDispatch } from '../../context/portfolio-provider'
 import { moneyFormat } from '@/lib/formatter'
 
 export function TransactionForm({

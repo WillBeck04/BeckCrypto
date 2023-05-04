@@ -10,7 +10,7 @@ import {
   TableCell,
   Title,
 } from '@tremor/react'
-import { Transaction } from '../portfolio-provider'
+import { Transaction } from '../../context/portfolio-provider'
 import { cn } from '@/lib/cn'
 import { moneyFormat } from '@/lib/formatter'
 

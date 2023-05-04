@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/cn'
-import { usePortfolio } from '../portfolio-provider'
+import { usePortfolio } from '../../context/portfolio-provider'
 import { useMemo } from 'react'
 import { Allocation } from './allocation'
 import { PortfolioTable } from './portfolio-table'

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import type { CryptoData } from '@/lib/getCryptoData'
 import Link from 'next/link'
 import { Table } from '@/components/table'
-import { useWatchlist } from '../watchlist-provider'
+import { useWatchlist } from '@/context/watchlist-provider'
 
 export function WatchlistInfo({ cryptoData }: { cryptoData: CryptoData }) {
   const [watchlistData, setWatchlistData] = useState<CryptoData>()

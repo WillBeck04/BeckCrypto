@@ -9,7 +9,7 @@ import { ChevronDown, ChevronUp, StarIcon, VenetianMask } from 'lucide-react'
 import Link from 'next/link'
 import { TableRow } from './table-row'
 import { DebouncedInput } from './debounced-input'
-import { useWatchlist } from '@/app/watchlist-provider'
+import { useWatchlist } from '@/context/watchlist-provider'
 import { useTable } from '@/hooks/useTable'
 import { flexRender } from '@tanstack/react-table'
 

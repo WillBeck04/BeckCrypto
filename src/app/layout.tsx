@@ -1,6 +1,6 @@
 import { Navbar } from '@/components/navbar'
 import './globals.css'
-import { Providers } from './providers'
+import { Providers } from '@/context/providers'
 import { Footer } from '@/components/footer'
 import { Container } from '@/components/ui/container'
 import { Inter } from 'next/font/google'
@@ -22,11 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${inter.variable}`}
-    >
+    <html lang="en" suppressHydrationWarning className={`${inter.variable}`}>
       <body className="min-h-screen">
         <Providers>
           {/* @ts-expect-error Async Server Component */}

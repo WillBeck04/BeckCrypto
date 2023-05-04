@@ -1,6 +1,6 @@
 'use client'
 
-import { useWatchlistDispatch } from '@/app/watchlist-provider'
+import { useWatchlistDispatch } from "@/context/watchlist-provider"
 import { StarIcon } from 'lucide-react'
 
 export default function WatchlistStar({
