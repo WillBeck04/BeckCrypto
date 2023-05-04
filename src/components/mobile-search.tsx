@@ -108,7 +108,7 @@ export default function MobileSearch({ cryptos }: { cryptos: CryptoData }) {
                     />
                     <Combobox.Options
                       static={true}
-                      className="mt-6 px-3 py-1 h-full space-y-1 overflow-y-scroll rounded-md text-sm ring ring-slate-200 dark:ring-slate-700"
+                      className="mt-6 h-full space-y-1 overflow-y-scroll rounded-md px-3 py-1 text-sm ring ring-slate-200 dark:ring-slate-700"
                     >
                       {filteredCryptos.map((crypto) => (
                         <Combobox.Option

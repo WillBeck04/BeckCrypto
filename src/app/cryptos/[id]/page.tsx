@@ -4,6 +4,7 @@ import { CoinInfo } from './coin-info'
 import { CoinDescription } from './coin-description'
 import { CoinChart } from './coin-chart'
 import { getCryptoChart } from '@/lib/getCryptoChart'
+import { CryptoNews } from './cryptoNews'
 
 export default async function CryptoPage({
   params,
@@ -30,6 +31,9 @@ export default async function CryptoPage({
           {/* @ts-expect-error Async Server Component */}
           <TrendingCoins />
         </div>
+
+        {/* @ts-expect-error Async Server Component */}
+        <CryptoNews id={params.id} />
       </div>
     </div>
   )
