@@ -1,4 +1,3 @@
-import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/cn'
 import { getCryptoNews } from '@/lib/getCryptoNews'
 import Link from 'next/link'
