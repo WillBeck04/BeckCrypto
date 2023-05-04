@@ -2,9 +2,10 @@ import { Table } from '@/components/table'
 import { TrendingCoins } from '@/components/trending-coins'
 import { TodayInfo } from '@/components/today-info'
 import { getCryptoData } from '@/lib/getCryptoData'
+import { Suspense } from 'react'
 
 export default async function Home() {
-  const data = await getCryptoData()
+  const cryptoData = await getCryptoData()
 
   return (
     <main>
@@ -12,7 +13,7 @@ export default async function Home() {
       <TodayInfo />
       {/* @ts-expect-error Async Server Component */}
       <TrendingCoins />
-      <Table cryptoData={data} />
+      <Table cryptoData={cryptoData} />
     </main>
   )
 }
