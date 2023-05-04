@@ -22,8 +22,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable}`}>
-      <body className="min-h-screen">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${inter.variable} h-full`}
+    >
+      <body className="h-full">
         <Providers>
           {/* @ts-expect-error Async Server Component */}
           <Navbar />
