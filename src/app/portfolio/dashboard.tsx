@@ -31,7 +31,9 @@ export function Dashboard({ cryptos }: { cryptos: CryptoData }) {
   const biggestSell = useMemo(() => {
     const costs = portfolio.map((t) => t.cost)
 
-    return Math.min(...costs)
+    const minCost = Math.min(...costs)
+
+    return minCost < 0 ? minCost : 0
   }, [portfolio])
 
   return (
