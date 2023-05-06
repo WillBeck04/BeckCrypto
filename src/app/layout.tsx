@@ -22,11 +22,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${inter.variable} h-full`}
-    >
+    <html lang="en" suppressHydrationWarning className={`${inter.variable}`}>
       <body className="h-full">
         <Providers>
           {/* @ts-expect-error Async Server Component */}

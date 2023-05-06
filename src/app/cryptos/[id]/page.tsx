@@ -4,8 +4,7 @@ import { CoinInfo } from './coin-info'
 import { CoinDescription } from './coin-description'
 import { CoinChart } from './coin-chart'
 import { getCryptoChart } from '@/lib/getCryptoChart'
-import { CryptoNews } from './cryptoNews'
-import { PriceProgress } from './coin-progress'
+import { CoinNews } from './coin-news'
 import { Suspense } from 'react'
 
 export default async function CryptoPage({
@@ -40,9 +39,9 @@ export default async function CryptoPage({
           <TrendingCoins />
         </div>
 
-        <Suspense fallback={'Loading'}>
+        <Suspense fallback={'Loading...'}>
           {/* @ts-expect-error Async Server Component */}
-          <CryptoNews id={params.id} />
+          <CoinNews id={params.id} />
         </Suspense>
       </div>
     </div>
