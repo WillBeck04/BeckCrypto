@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid lg:grid-cols-2">
           <div className="text-slate-800 dark:text-slate-200">
             <h3 className="text-xl font-bold">Beck Finance</h3>
-            <p className="mt-2 lg:mt-5">&copy; 2023 Beck Finance</p>
+            <p className="mt-2 lg:mt-5">&copy; 2023 CryptoQuest</p>
           </div>
           <div className="mt-10 flex flex-col gap-10 text-slate-800 dark:text-slate-200 lg:mt-0 lg:flex-row lg:justify-self-end">
             <div>
@@ -35,16 +35,16 @@ export function Footer() {
               <h4 className="text-lg font-medium leading-7">Socials</h4>
               <ul className="mt-3 space-y-3 text-slate-600 dark:text-slate-400">
                 <li>
-                  <Link href="#">Github</Link>
+                  <Link href="https://twitter.com/cryptobeckkk">Twitter</Link>
                 </li>
                 <li>
-                  <Link href="#">Twitter</Link>
+                  <Link href="https://www.linkedin.com/in/william-beck-339800245/">Linkedin</Link>
                 </li>
                 <li>
-                  <Link href="#">Linkedin</Link>
+                  <Link href="https://www.youtube.com/channel/UCFjL45n1wfPUhe-xyqjOuSg">Youtube</Link>
                 </li>
                 <li>
-                  <Link href="#">Youtube</Link>
+                  <Link href="https://www.youtube.com/channel/UCFjL45n1wfPUhe-xyqjOuSg">Instagram</Link>
                 </li>
               </ul>
             </div>

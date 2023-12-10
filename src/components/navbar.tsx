@@ -34,7 +34,7 @@ function MainNav({ cryptos }: { cryptos: CryptoData }) {
   return (
     <nav className="flex w-full items-baseline justify-between border-b border-slate-200 px-4 py-4 dark:border-slate-800 lg:justify-normal lg:border-none lg:px-0">
       <Link href="/">
-        <h3 className="text-xl font-bold">Beck Finance</h3>
+        <h3 className="text-xl font-bold">CryptoQuest</h3>
       </Link>
       <ul className="ml-auto hidden space-x-5 text-sm font-medium lg:flex">
         <li>
