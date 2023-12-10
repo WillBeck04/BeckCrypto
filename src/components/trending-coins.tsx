@@ -6,7 +6,7 @@ export async function TrendingCoins() {
   const trendingCoins = await getTrendingCoins()
   return (
     <div className="mt-6 lg:px-0">
-      <h2 className="text-lg font-semibold">Trending coins</h2>{' '}
+      <h2 className="text-lg font-semibold">William's Portofolio</h2>{' '}
       <div className="flex gap-6 overflow-auto py-3 lg:flex-wrap">
         {trendingCoins.map((coin) => (
           <TrendingCoin key={coin.item.id} coin={coin.item} />

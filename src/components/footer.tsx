@@ -7,8 +7,8 @@ export function Footer() {
       <Container>
         <div className="grid lg:grid-cols-2">
           <div className="text-slate-800 dark:text-slate-200">
-            <h3 className="text-xl font-bold">Cryptosito</h3>
-            <p className="mt-2 lg:mt-5">&copy; 2023 Paweł Sobaniec</p>
+            <h3 className="text-xl font-bold">Beck Finance</h3>
+            <p className="mt-2 lg:mt-5">&copy; 2023 Beck Finance</p>
           </div>
           <div className="mt-10 flex flex-col gap-10 text-slate-800 dark:text-slate-200 lg:mt-0 lg:flex-row lg:justify-self-end">
             <div>
